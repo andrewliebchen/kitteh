@@ -10,10 +10,4 @@ const Space = props => (
   </Box>
 );
 
-export default withTracker(props => {
-  let id = props ? props.match.params.id : {};
-
-  return {
-    space: Spaces.findOne(id)
-  };
-})(Space);
+export default Space;

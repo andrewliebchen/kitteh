@@ -2,12 +2,16 @@ import React from "react";
 import { Animals } from "../api/animals";
 import AnimalForm from "./AnimalForm";
 import { withTracker } from "meteor/react-meteor-data";
-import { Box, Text, Heading, Flex } from "theme-ui";
+import { Box, Text, Heading, Flex, Button } from "theme-ui";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const AnimalList = props => (
   <Box>
-    <Heading>Animals</Heading>
+    <Flex>
+      <Heading>Animals</Heading>
+      <Link to={`/spaces/${props.spaceId}/new`}>New Animal</Link>
+    </Flex>
     <table>
       <thead>
         <tr>
@@ -51,17 +55,13 @@ const AnimalList = props => (
         ))}
       </tbody>
     </table>
-
-    <AnimalForm method="animals.insert" {...props} />
   </Box>
 );
 
-AnimalList.propTypes = {
-  spaceId: PropTypes.string
-};
-
 export default withTracker(props => {
+  let spaceId = props ? props.match.params.id : "";
+
   return {
-    animals: Animals.find({ spaceId: props.spaceId }).fetch()
+    animals: Animals.find({ spaceId: spaceId }).fetch()
   };
 })(AnimalList);
