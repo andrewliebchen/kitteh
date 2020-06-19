@@ -17,5 +17,9 @@ Meteor.methods({
 
   "animals.update"(id, args) {
     Animals.update(id, { $set: { ...args, updatedAt: Date.now() } });
+  },
+
+  "animals.remove"(id) {
+    Animals.remove(id);
   }
 });

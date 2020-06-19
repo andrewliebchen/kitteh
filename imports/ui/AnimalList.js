@@ -16,6 +16,7 @@ const AnimalList = props => (
           <th>Type</th>
           <th>Lifestage</th>
           <th>Mother</th>
+          <th />
         </tr>
       </thead>
       <tbody>
@@ -35,6 +36,16 @@ const AnimalList = props => (
             </td>
             <td>
               <Text>{animal.motherId}</Text>
+            </td>
+            <td>
+              <Text
+                onClick={() =>
+                  window.confirm("Are you sure you want to delete this?") &&
+                  Meteor.call("animals.remove", animal._id)
+                }
+              >
+                Delete
+              </Text>
             </td>
           </tr>
         ))}
