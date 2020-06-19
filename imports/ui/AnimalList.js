@@ -8,15 +8,40 @@ import PropTypes from "prop-types";
 const AnimalList = props => (
   <Box>
     <Heading>Animals</Heading>
-    {props.animals.map(animal => (
-      <Flex key={animal._id}>
-        <Text>{animal.name}</Text>
-        <Text>{animal.createdAt}</Text>
-        <Text>{animal.type}</Text>
-        <Text>{animal.lifestage}</Text>
-      </Flex>
-    ))}
-    <AnimalForm method="animals.insert" spaceId={props.spaceId} />
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Created at</th>
+          <th>Type</th>
+          <th>Lifestage</th>
+          <th>Mother</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.animals.map(animal => (
+          <tr key={animal._id}>
+            <td>
+              <Text>{animal.name}</Text>
+            </td>
+            <td>
+              <Text>{animal.createdAt}</Text>
+            </td>
+            <td>
+              <Text>{animal.type}</Text>
+            </td>
+            <td>
+              <Text>{animal.lifestage}</Text>
+            </td>
+            <td>
+              <Text>{animal.motherId}</Text>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <AnimalForm method="animals.insert" {...props} />
   </Box>
 );
 

@@ -10,7 +10,8 @@ const AnimalForm = props => {
   const [args, setArgs] = useState({
     name: "",
     lifestage: "kitten",
-    type: "cat"
+    type: "cat",
+    motherId: ""
   });
 
   return (
@@ -51,6 +52,28 @@ const AnimalForm = props => {
           ))}
         </Select>
       </Box>
+      {args.lifestage === "kitten" && (
+        <Box>
+          <Label>Mother</Label>
+          <Select
+            value={args.motherId}
+            onChange={event =>
+              setArgs({ ...args, motherId: event.target.value })
+            }
+          >
+            <option value="">Unknown</option>
+            {props.animals
+              .filter(
+                animal => animal.type === "cat" && animal.lifestage === "adult"
+              )
+              .map(mother => (
+                <option key={mother._id} value={mother._id}>
+                  {mother.name}
+                </option>
+              ))}
+          </Select>
+        </Box>
+      )}
       <Button
         onClick={() =>
           Meteor.call(props.method, { spaceId: props.spaceId, ...args })
