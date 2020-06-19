@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import "../imports/api/animals";
+import "../imports/api/spaces";
 
 ServiceConfiguration.configurations.upsert(
   { service: "facebook" },

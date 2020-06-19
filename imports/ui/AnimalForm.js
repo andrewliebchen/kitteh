@@ -51,13 +51,20 @@ const AnimalForm = props => {
           ))}
         </Select>
       </Box>
-      <Button onClick={() => Meteor.call(props.method, args)}>Add</Button>
+      <Button
+        onClick={() =>
+          Meteor.call(props.method, { spaceId: props.spaceId, ...args })
+        }
+      >
+        Add
+      </Button>
     </Box>
   );
 };
 
 AnimalForm.propTypes = {
-  method: PropTypes.string
+  method: PropTypes.string,
+  spaceId: PropTypes.string
 };
 
 export default AnimalForm;
