@@ -8,6 +8,8 @@ import Space from "./Space";
 import Account from "./Account";
 import NewAnimal from "./NewAnimal";
 import NewFoster from "./NewFoster";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = props => (
   <Router>
@@ -31,6 +33,18 @@ const App = props => (
       exact
     />
     <Route path="/" component={SpacesList} exact />
+    <ToastContainer
+      position="bottom-center"
+      closeButton={false}
+      autoClose={3000}
+      hideProgressBar
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable={false}
+      pauseOnHover
+    />
   </Router>
 );
 

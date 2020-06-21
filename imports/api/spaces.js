@@ -5,13 +5,13 @@ export const Spaces = new Mongo.Collection("spaces");
 
 Meteor.methods({
   "spaces.insert"() {
-    Spaces.insert({
+    return Spaces.insert({
       createdAt: Date.now(),
       ownerId: Meteor.userId()
     });
   },
 
   "spaces.update"(id, args) {
-    Spaces.update(id, { $set: { ...args, updatedAt: Date.now() } });
+    return Spaces.update(id, { $set: { ...args, updatedAt: Date.now() } });
   }
 });

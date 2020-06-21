@@ -9,17 +9,17 @@ export const Animals = new Mongo.Collection("animals");
 
 Meteor.methods({
   "animals.insert"(args) {
-    Animals.insert({
+    return Animals.insert({
       createdAt: Date.now(),
       ...args
     });
   },
 
   "animals.update"(id, args) {
-    Animals.update(id, { $set: { ...args, updatedAt: Date.now() } });
+    return Animals.update(id, { $set: { ...args, updatedAt: Date.now() } });
   },
 
   "animals.remove"(id) {
-    Animals.remove(id);
+    return Animals.remove(id);
   }
 });
