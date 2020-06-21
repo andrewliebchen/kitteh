@@ -1,16 +1,43 @@
-import React from "react";
-import { Box, Heading } from "theme-ui";
-import FosterForm from "./FosterForm";
+import { Heading, Label, Box, Input, Select, Button } from "theme-ui";
+import { Meteor } from "meteor/meteor";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
-const NewFoster = props => (
-  <Box>
-    <Heading>New Foster</Heading>
-    <FosterForm
-      method="fosters.insert"
-      spaceId={props.match.params.id}
-      {...props}
-    />
-  </Box>
-);
+const defaultArgs = {
+  name: ""
+};
+
+const NewFoster = props => {
+  const [args, setArgs] = useState(defaultArgs);
+  return (
+    <Box>
+      <Heading>New Foster</Heading>
+      <Box>
+        <Label>Name</Label>
+        <Input
+          type="text"
+          value={args.name}
+          onChange={event => setArgs({ ...args, name: event.target.value })}
+        />
+      </Box>
+
+      <Button
+        onClick={() =>
+          Meteor.call(
+            "fosters.insert",
+            { spaceId: props.match.params.id, ...args },
+            (err, success) => {
+              success && toast("Done", { type: "success" });
+              setArgs(defaultArgs);
+            }
+          )
+        }
+      >
+        Add
+      </Button>
+    </Box>
+  );
+};
 
 export default NewFoster;
