@@ -7,6 +7,7 @@ import SpacesList from "./SpacesList";
 import Space from "./Space";
 import Account from "./Account";
 import NewAnimal from "./NewAnimal";
+import NewFoster from "./NewFoster";
 
 const App = props => (
   <Router>
@@ -17,8 +18,12 @@ const App = props => (
     <Route path="/login" component={Login} />
     <Route path="/animals" component={AnimalList} />
     <Route
-      path="/spaces/:id/new"
+      path="/spaces/:id/animals/new"
       render={routeProps => <NewAnimal {...routeProps} />}
+    />
+    <Route
+      path="/spaces/:id/fosters/new"
+      render={routeProps => <NewFoster {...routeProps} />}
     />
     <Route
       path="/spaces/:id"

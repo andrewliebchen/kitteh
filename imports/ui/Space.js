@@ -3,10 +3,12 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Spaces } from "../api/spaces";
 import { Box, Heading } from "theme-ui";
 import AnimalList from "./AnimalList";
+import FosterList from "./FosterList";
 
 const Space = props => (
   <Box>
     <AnimalList {...props} />
+    <FosterList {...props} />
   </Box>
 );
 

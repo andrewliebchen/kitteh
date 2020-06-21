@@ -1,16 +1,18 @@
 import React from "react";
-import { Animals } from "../api/animals";
+import { Fosters } from "../api/fosters";
 import { withTracker } from "meteor/react-meteor-data";
 import { Box, Text, Heading, Flex, Button } from "theme-ui";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const AnimalList = props => (
+// Make this work
+
+const FosterList = props => (
   <Box>
     <Flex>
-      <Heading>Animals</Heading>
-      <Link to={`/spaces/${props.match.params.id}/animals/new`}>
-        New Animal
+      <Heading>Fosters</Heading>
+      <Link to={`/spaces/${props.match.params.id}/fosters/new`}>
+        New Foster
       </Link>
     </Flex>
     <table>
@@ -18,35 +20,24 @@ const AnimalList = props => (
         <tr>
           <th>Name</th>
           <th>Created at</th>
-          <th>Type</th>
-          <th>Lifestage</th>
-          <th>Mother</th>
           <th />
         </tr>
       </thead>
       <tbody>
-        {props.animals.map(animal => (
-          <tr key={animal._id}>
+        {props.fosters.map(foster => (
+          <tr key={foster._id}>
             <td>
-              <Text>{animal.name}</Text>
+              <Text>{foster.name}</Text>
             </td>
             <td>
-              <Text>{animal.createdAt}</Text>
+              <Text>{foster.createdAt}</Text>
             </td>
-            <td>
-              <Text>{animal.type}</Text>
-            </td>
-            <td>
-              <Text>{animal.lifestage}</Text>
-            </td>
-            <td>
-              <Text>{animal.motherId}</Text>
-            </td>
+
             <td>
               <Text
                 onClick={() =>
                   window.confirm("Are you sure you want to delete this?") &&
-                  Meteor.call("animals.remove", animal._id)
+                  Meteor.call("foster.remove", foster._id)
                 }
               >
                 Delete
@@ -63,6 +54,6 @@ export default withTracker(props => {
   let spaceId = props ? props.match.params.id : "";
 
   return {
-    animals: Animals.find({ spaceId: spaceId }).fetch()
+    fosters: Fosters.find({ spaceId: spaceId }).fetch()
   };
-})(AnimalList);
+})(FosterList);
