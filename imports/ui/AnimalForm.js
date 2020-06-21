@@ -6,15 +6,16 @@ import { toast } from "react-toastify";
 
 const lifestages = ["kitten", "adult"];
 const types = ["cat", "dog"];
+const defaultArgs = {
+  name: "",
+  lifestage: "kitten",
+  type: "cat",
+  motherId: "",
+  fosterId: ""
+};
 
 const AnimalForm = props => {
-  const [args, setArgs] = useState({
-    name: "",
-    lifestage: "kitten",
-    type: "cat",
-    motherId: "",
-    fosterId: ""
-  });
+  const [args, setArgs] = useState(defaultArgs);
 
   return (
     <Box>
@@ -95,7 +96,10 @@ const AnimalForm = props => {
           Meteor.call(
             props.method,
             { spaceId: props.spaceId, ...args },
-            (err, success) => success && toast("Done", { type: "success" })
+            (err, success) => {
+              success && toast("Done", { type: "success" });
+              setArgs(defaultArgs);
+            }
           )
         }
       >

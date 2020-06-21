@@ -4,10 +4,12 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import { toast } from "react-toastify";
 
+const defaultArgs = {
+  name: ""
+};
+
 const FosterForm = props => {
-  const [args, setArgs] = useState({
-    name: ""
-  });
+  const [args, setArgs] = useState(defaultArgs);
 
   return (
     <Box>
@@ -25,7 +27,10 @@ const FosterForm = props => {
           Meteor.call(
             props.method,
             { spaceId: props.spaceId, ...args },
-            (err, success) => success && toast("Done", { type: "success" })
+            (err, success) => {
+              success && toast("Done", { type: "success" });
+              setArgs(defaultArgs);
+            }
           )
         }
       >
