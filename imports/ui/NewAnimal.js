@@ -1,8 +1,9 @@
-import React from "react";
-import AnimalForm from "./AnimalForm";
-import { withTracker } from "meteor/react-meteor-data";
 import { Animals } from "../api/animals";
 import { Box, Heading } from "theme-ui";
+import { Fosters } from "../api/fosters";
+import { withTracker } from "meteor/react-meteor-data";
+import AnimalForm from "./AnimalForm";
+import React from "react";
 
 const NewAnimal = props => (
   <Box>
@@ -19,6 +20,7 @@ export default withTracker(props => {
   let spaceId = props ? props.match.params.id : "";
 
   return {
-    animals: Animals.find({ spaceId: spaceId }).fetch()
+    animals: Animals.find({ spaceId: spaceId }).fetch(),
+    fosters: Fosters.find({ spaceId: spaceId }).fetch()
   };
 })(NewAnimal);

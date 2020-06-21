@@ -31,7 +31,7 @@ const FosterForm = props => {
 };
 
 FosterForm.propTypes = {
-  method: PropTypes.func,
+  method: PropTypes.string,
   spaceId: PropTypes.string
 };
 

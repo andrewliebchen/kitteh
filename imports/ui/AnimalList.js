@@ -21,6 +21,7 @@ const AnimalList = props => (
           <th>Type</th>
           <th>Lifestage</th>
           <th>Mother</th>
+          <th>Foster</th>
           <th />
         </tr>
       </thead>
@@ -41,6 +42,9 @@ const AnimalList = props => (
             </td>
             <td>
               <Text>{animal.motherId}</Text>
+            </td>
+            <td>
+              <Text>{animal.fosterId}</Text>
             </td>
             <td>
               <Text

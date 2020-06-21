@@ -11,7 +11,8 @@ const AnimalForm = props => {
     name: "",
     lifestage: "kitten",
     type: "cat",
-    motherId: ""
+    motherId: "",
+    fosterId: ""
   });
 
   return (
@@ -74,6 +75,20 @@ const AnimalForm = props => {
           </Select>
         </Box>
       )}
+      <Box>
+        <Label>Foster</Label>
+        <Select
+          value={args.fosterId}
+          onChange={event => setArgs({ ...args, fosterId: event.target.value })}
+        >
+          <option value="">Unknown</option>
+          {props.fosters.map(foster => (
+            <option key={foster._id} value={foster._id}>
+              {foster.name}
+            </option>
+          ))}
+        </Select>
+      </Box>
       <Button
         onClick={() =>
           Meteor.call(props.method, { spaceId: props.spaceId, ...args })
@@ -87,7 +102,9 @@ const AnimalForm = props => {
 
 AnimalForm.propTypes = {
   method: PropTypes.string,
-  spaceId: PropTypes.string
+  spaceId: PropTypes.string,
+  animals: PropTypes.array,
+  fosters: PropTypes.array
 };
 
 export default AnimalForm;
