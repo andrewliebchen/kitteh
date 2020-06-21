@@ -1,18 +1,18 @@
 import { Animals } from "../api/animals";
 import { Fosters } from "../api/fosters";
-import { Heading, Label, Box, Input, Select, Button } from "theme-ui";
+import { Heading, Label, Box, Input, Select, Button, Flex } from "theme-ui";
+import { lifestagesTypes, speciesTypes } from "../utils/types";
+import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { toast } from "react-toastify";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
-const lifestages = ["kitten", "adult"];
-const types = ["cat", "dog"];
 const defaultArgs = {
   name: "",
-  lifestage: "kitten",
-  type: "cat",
+  lifestage: lifestagesTypes[0],
+  species: speciesTypes[0],
   motherId: "",
   fosterId: ""
 };
@@ -38,7 +38,7 @@ const NewAnimal = props => {
             setArgs({ ...args, lifestage: event.target.value })
           }
         >
-          {lifestages.map(stage => (
+          {lifestagesTypes.map(stage => (
             <option key={stage} value={stage}>
               {stage}
             </option>
@@ -46,19 +46,19 @@ const NewAnimal = props => {
         </Select>
       </Box>
       <Box>
-        <Label>Type</Label>
+        <Label>Species</Label>
         <Select
-          value={args.type}
-          onChange={event => setArgs({ ...args, type: event.target.value })}
+          value={args.species}
+          onChange={event => setArgs({ ...args, species: event.target.value })}
         >
-          {types.map(type => (
-            <option key={type} value={type}>
-              {type}
+          {speciesTypes.map(species => (
+            <option key={species} value={species}>
+              {species}
             </option>
           ))}
         </Select>
       </Box>
-      {args.lifestage === "kitten" && (
+      {args.lifestage === "juvenile" && (
         <Box>
           <Label>Mother</Label>
           <Select
@@ -70,7 +70,8 @@ const NewAnimal = props => {
             <option value="">Unknown</option>
             {props.animals
               .filter(
-                animal => animal.type === "cat" && animal.lifestage === "adult"
+                animal =>
+                  animal.species === "cat" && animal.lifestage === "adult"
               )
               .map(mother => (
                 <option key={mother._id} value={mother._id}>
@@ -94,20 +95,23 @@ const NewAnimal = props => {
           ))}
         </Select>
       </Box>
-      <Button
-        onClick={() =>
-          Meteor.call(
-            "animals.insert",
-            { spaceId: props.match.params.id, ...args },
-            (err, success) => {
-              success && toast("Done", { type: "success" });
-              setArgs(defaultArgs);
-            }
-          )
-        }
-      >
-        Add
-      </Button>
+      <Flex sx={{ alignItems: "center" }}>
+        <Link to={`/spaces/${props.match.params.id}`}>Done</Link>
+        <Button
+          onClick={() =>
+            Meteor.call(
+              "animals.insert",
+              { spaceId: props.match.params.id, ...args },
+              (err, success) => {
+                success && toast("Done", { type: "success" });
+                setArgs(defaultArgs);
+              }
+            )
+          }
+        >
+          Add
+        </Button>
+      </Flex>
     </Box>
   );
 };

@@ -12,7 +12,7 @@ const FosterList = props => (
     <Flex>
       <Heading>Fosters</Heading>
       <Link to={`/spaces/${props.match.params.id}/fosters/new`}>
-        New Foster
+        Add New Foster
       </Link>
     </Flex>
     <table>

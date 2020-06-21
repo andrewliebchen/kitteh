@@ -10,7 +10,7 @@ const AnimalList = props => (
     <Flex>
       <Heading>Animals</Heading>
       <Link to={`/spaces/${props.match.params.id}/animals/new`}>
-        New Animal
+        Add New Animal
       </Link>
     </Flex>
     <table>
