@@ -4,6 +4,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Fosters } from "../api/fosters";
 import { Animals } from "../api/animals";
 import { Link } from "react-router-dom";
+import AnimalTable from "./AnimalTable";
 
 const Foster = props => (
   <Box>
@@ -13,9 +14,7 @@ const Foster = props => (
           <Link to={`/spaces/${props.match.params.spaceId}`}>Back</Link>
           <Heading>{props.foster.name}</Heading>
         </Flex>
-        {props.animals.map(animal => (
-          <Box key={animal._id}>{animal.name}</Box>
-        ))}
+        <AnimalTable {...props} />
       </Box>
     )}
   </Box>

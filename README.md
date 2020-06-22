@@ -13,3 +13,4 @@ Tracking your foster litters.
 - Foster view for inputting weight
 - Sortable animal/fosters table
 - Context API
+- ~~List of fosters on the fosters page~~
