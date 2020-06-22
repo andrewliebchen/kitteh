@@ -10,6 +10,7 @@ import NewAnimal from "./NewAnimal";
 import NewFoster from "./NewFoster";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Foster from "./Foster";
 
 const App = props => (
   <Router>
@@ -26,6 +27,10 @@ const App = props => (
     <Route
       path="/spaces/:id/fosters/new"
       render={routeProps => <NewFoster {...routeProps} />}
+    />
+    <Route
+      path="/spaces/:spaceId/fosters/:fosterId"
+      render={routeProps => <Foster {...routeProps} />}
     />
     <Route
       path="/spaces/:id"
