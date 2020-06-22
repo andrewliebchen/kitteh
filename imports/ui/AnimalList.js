@@ -1,9 +1,10 @@
-import React from "react";
 import { Animals } from "../api/animals";
-import { withTracker } from "meteor/react-meteor-data";
 import { Box, Text, Heading, Flex, Button } from "theme-ui";
-import PropTypes from "prop-types";
+import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
+import PropTypes from "prop-types";
+import React from "react";
 
 const AnimalList = props => (
   <Box>
@@ -32,7 +33,7 @@ const AnimalList = props => (
               <Text>{animal.name}</Text>
             </td>
             <td>
-              <Text>{animal.createdAt}</Text>
+              <Text>{format(animal.createdAt)}</Text>
             </td>
             <td>
               <Text>{animal.type}</Text>

@@ -1,10 +1,11 @@
-import React from "react";
-import { Fosters } from "../api/fosters";
-import { withTracker } from "meteor/react-meteor-data";
-import { Box, Text, Heading, Flex, Button } from "theme-ui";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { Animals } from "../api/animals";
+import { Box, Text, Heading, Flex, Button } from "theme-ui";
+import { format } from "timeago.js";
+import { Fosters } from "../api/fosters";
+import { Link } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
+import PropTypes from "prop-types";
+import React from "react";
 
 const FosterList = props => (
   <Box>
@@ -35,7 +36,7 @@ const FosterList = props => (
               </Text>
             </td>
             <td>
-              <Text>{foster.createdAt}</Text>
+              <Text>{format(foster.createdAt)}</Text>
             </td>
             <td>
               <Text
