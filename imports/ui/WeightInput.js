@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const WeightInput = props => {
   const [value, setValue] = useState("");
   return (
-    <Flex sx={{ justifyContent: "space-between", alignItems: "center" }}>
+    <Flex sx={{ alignItems: "center" }}>
       <input
         type="number"
         placeholder="Add a weight"

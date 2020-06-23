@@ -1,10 +1,10 @@
-import React from "react";
-import { Box, Heading, Flex, Text, Link } from "theme-ui";
-import { withTracker } from "meteor/react-meteor-data";
-import { Fosters } from "../api/fosters";
 import { Animals } from "../api/animals";
-import { Link as RouterLink } from "react-router-dom";
+import { Box, Heading, Flex, Text, Link } from "theme-ui";
 import { format } from "timeago.js";
+import { Fosters } from "../api/fosters";
+import { Link as RouterLink } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
+import React from "react";
 import WeightInput from "./WeightInput";
 
 const Animal = props => (
@@ -37,7 +37,12 @@ const Animal = props => (
         </Text>
 
         <Box sx={{ marginTop: 3 }}>
-          <WeightInput {...props} />
+          <WeightInput {...props.animal} />
+          {props.animal.weight.reverse().map(weight => (
+            <Text key={weight.createdAt}>
+              <b>{weight.createdAt}</b> {weight.value}
+            </Text>
+          ))}
         </Box>
       </Box>
     )}
