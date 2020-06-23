@@ -7,8 +7,6 @@ import { withTracker } from "meteor/react-meteor-data";
 import React from "react";
 import WeightInput from "./WeightInput";
 
-// Move the bar chart into it's own file
-
 const Animal = props => (
   <Box>
     {typeof props.animal !== "undefined" && (
@@ -47,7 +45,7 @@ const Animal = props => (
               </Text>
               <div
                 style={{
-                  height: 16,
+                  height: 20,
                   width: "100%",
                   backgroundColor: "#f3f3f3"
                 }}
