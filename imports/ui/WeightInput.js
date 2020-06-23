@@ -32,7 +32,6 @@ const WeightInput = props => {
           Add
         </Link>
       </Box>
-      <Link>See All</Link>
     </Flex>
   );
 };

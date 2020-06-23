@@ -1,4 +1,4 @@
-import { Heading, Label, Box, Input, Select, Button, Flex } from "theme-ui";
+import { Heading, Label, Box, Field, Button, Flex } from "theme-ui";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { toast } from "react-toastify";
@@ -14,14 +14,12 @@ const NewFoster = props => {
   return (
     <Box>
       <Heading>New Foster</Heading>
-      <Box>
-        <Label>Name</Label>
-        <Input
-          type="text"
-          value={args.name}
-          onChange={event => setArgs({ ...args, name: event.target.value })}
-        />
-      </Box>
+      <Field
+        label="Name"
+        type="text"
+        value={args.name}
+        onChange={event => setArgs({ ...args, name: event.target.value })}
+      />
       <Flex sx={{ alignItems: "center" }}>
         <Link to={`/spaces/${props.match.params.id}`}>Done</Link>
         <Button

@@ -1,16 +1,17 @@
-import React from "react";
+import "react-toastify/dist/ReactToastify.css";
 import { Box, Heading, Flex } from "theme-ui";
-import AnimalList from "./AnimalList";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Login from "./Login";
-import SpacesList from "./SpacesList";
-import Space from "./Space";
+import { ToastContainer } from "react-toastify";
 import Account from "./Account";
+import Animal from "./Animal";
+import AnimalList from "./AnimalList";
+import Foster from "./Foster";
+import Login from "./Login";
 import NewAnimal from "./NewAnimal";
 import NewFoster from "./NewFoster";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Foster from "./Foster";
+import React from "react";
+import Space from "./Space";
+import SpacesList from "./SpacesList";
 
 const App = props => (
   <Router>
@@ -31,6 +32,10 @@ const App = props => (
     <Route
       path="/spaces/:spaceId/fosters/:fosterId"
       render={routeProps => <Foster {...routeProps} />}
+    />
+    <Route
+      path="/spaces/:spaceId/animals/:animalId"
+      render={routeProps => <Animal {...routeProps} />}
     />
     <Route
       path="/spaces/:id"

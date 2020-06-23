@@ -27,7 +27,7 @@ const FosterList = props => (
         {props.fosters.map(foster => (
           <tr key={foster._id}>
             <td>
-              <Text>
+              <Text sx={{ fontWeight: "bold" }}>
                 <Link
                   to={`/spaces/${props.match.params.id}/fosters/${foster._id}`}
                 >

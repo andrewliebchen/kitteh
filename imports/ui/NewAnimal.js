@@ -1,6 +1,6 @@
 import { Animals } from "../api/animals";
 import { Fosters } from "../api/fosters";
-import { Heading, Label, Box, Input, Select, Button, Flex } from "theme-ui";
+import { Heading, Box, Select, Button, Flex, Field } from "theme-ui";
 import { lifestagesTypes, speciesTypes } from "../utils/types";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
@@ -22,79 +22,68 @@ const NewAnimal = props => {
   return (
     <Box>
       <Heading>New Animal</Heading>
-      <Box>
-        <Label>Name</Label>
-        <Input
-          type="text"
-          value={args.name}
-          onChange={event => setArgs({ ...args, name: event.target.value })}
-        />
-      </Box>
-      <Box>
-        <Label>Lifestage</Label>
-        <Select
-          value={args.lifstage}
-          onChange={event =>
-            setArgs({ ...args, lifestage: event.target.value })
-          }
-        >
-          {lifestagesTypes.map(stage => (
-            <option key={stage} value={stage}>
-              {stage}
-            </option>
-          ))}
-        </Select>
-      </Box>
-      <Box>
-        <Label>Species</Label>
-        <Select
-          value={args.species}
-          onChange={event => setArgs({ ...args, species: event.target.value })}
-        >
-          {speciesTypes.map(species => (
-            <option key={species} value={species}>
-              {species}
-            </option>
-          ))}
-        </Select>
-      </Box>
+      <Field
+        type="text"
+        label="Name"
+        value={args.name}
+        onChange={event => setArgs({ ...args, name: event.target.value })}
+      />
+      <Field
+        as={Select}
+        label="Lifestage"
+        value={args.lifstage}
+        onChange={event => setArgs({ ...args, lifestage: event.target.value })}
+      >
+        {lifestagesTypes.map(stage => (
+          <option key={stage} value={stage}>
+            {stage}
+          </option>
+        ))}
+      </Field>
+      <Field
+        as={Select}
+        label="Species"
+        value={args.species}
+        onChange={event => setArgs({ ...args, species: event.target.value })}
+      >
+        {speciesTypes.map(species => (
+          <option key={species} value={species}>
+            {species}
+          </option>
+        ))}
+      </Field>
       {args.lifestage === "juvenile" && (
-        <Box>
-          <Label>Mother</Label>
-          <Select
-            value={args.motherId}
-            onChange={event =>
-              setArgs({ ...args, motherId: event.target.value })
-            }
-          >
-            <option value="">Unknown</option>
-            {props.animals
-              .filter(
-                animal =>
-                  animal.species === "cat" && animal.lifestage === "adult"
-              )
-              .map(mother => (
-                <option key={mother._id} value={mother._id}>
-                  {mother.name}
-                </option>
-              ))}
-          </Select>
-        </Box>
-      )}
-      <Box>
-        <Label>Foster</Label>
-        <Select
-          value={args.fosterId}
-          onChange={event => setArgs({ ...args, fosterId: event.target.value })}
+        <Field
+          as={Select}
+          label="Mother"
+          value={args.motherId}
+          onChange={event => setArgs({ ...args, motherId: event.target.value })}
         >
           <option value="">Unknown</option>
-          {props.fosters.map(foster => (
-            <option key={foster._id} value={foster._id}>
-              {foster.name}
-            </option>
-          ))}
-        </Select>
-      </Box>
+          {props.animals
+            .filter(
+              animal => animal.species === "cat" && animal.lifestage === "adult"
+            )
+            .map(mother => (
+              <option key={mother._id} value={mother._id}>
+                {mother.name}
+              </option>
+            ))}
+        </Field>
+      )}
+      <Field
+        as={Select}
+        label="Foster"
+        value={args.fosterId}
+        onChange={event => setArgs({ ...args, fosterId: event.target.value })}
+      >
+        <option value="">Unknown</option>
+        {props.fosters.map(foster => (
+          <option key={foster._id} value={foster._id}>
+            {foster.name}
+          </option>
+        ))}
+      </Field>
       <Flex sx={{ alignItems: "center" }}>
         <Link to={`/spaces/${props.match.params.id}`}>Done</Link>
         <Button

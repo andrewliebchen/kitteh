@@ -1,9 +1,10 @@
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-import { Text } from "theme-ui";
+import { Text, Link as ThemeLink } from "theme-ui";
 import React from "react";
 import WeightInput from "./WeightInput";
+import PropTypes from "prop-types";
 
 const AnimalTable = props => (
   <table>
@@ -23,7 +24,13 @@ const AnimalTable = props => (
       {props.animals.map(animal => (
         <tr key={animal._id}>
           <td>
-            <Text>{animal.name}</Text>
+            <Text sx={{ fontWeight: "bold" }}>
+              <Link
+                to={`/spaces/${props.match.params.id}/animals/${animal._id}`}
+              >
+                {animal.name}
+              </Link>
+            </Text>
           </td>
           <td>
             <Text>{format(animal.createdAt)}</Text>
@@ -41,14 +48,14 @@ const AnimalTable = props => (
             <Text>{animal.fosterId}</Text>
           </td>
           <td>
-            <Text
+            <ThemeLink
               onClick={() =>
                 window.confirm("Are you sure you want to delete this?") &&
                 Meteor.call("animals.remove", animal._id)
               }
             >
               Delete
-            </Text>
+            </ThemeLink>
           </td>
           <td>
             <WeightInput {...animal} />
@@ -58,5 +65,9 @@ const AnimalTable = props => (
     </tbody>
   </table>
 );
+
+AnimalTable.propTypes = {
+  animals: PropTypes.array
+};
 
 export default AnimalTable;
