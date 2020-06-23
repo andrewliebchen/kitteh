@@ -4,6 +4,7 @@ import { format } from "timeago.js";
 import { Fosters } from "../api/fosters";
 import { Link as RouterLink } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
+import Bar from "./Bar";
 import React from "react";
 import WeightInput from "./WeightInput";
 
@@ -43,21 +44,7 @@ const Animal = props => (
               <Text sx={{ width: 300 }}>
                 <b>{weight.createdAt}</b> {weight.value}
               </Text>
-              <div
-                style={{
-                  height: 20,
-                  width: "100%",
-                  backgroundColor: "#f3f3f3"
-                }}
-              >
-                <div
-                  style={{
-                    width: (weight.value / 2000) * 100 + "%",
-                    height: "inherit",
-                    backgroundColor: "gray"
-                  }}
-                />
-              </div>
+              <Bar value={weight.value} />
             </Flex>
           ))}
         </Box>
