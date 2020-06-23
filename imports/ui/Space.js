@@ -1,7 +1,6 @@
 import React from "react";
 import { withTracker } from "meteor/react-meteor-data";
-import { Spaces } from "../api/spaces";
-import { Box, Heading } from "theme-ui";
+import { Box, Heading, Divider } from "theme-ui";
 import AnimalList from "./AnimalList";
 import FosterList from "./FosterList";
 

@@ -14,48 +14,50 @@ import Space from "./Space";
 import SpacesList from "./SpacesList";
 
 const App = props => (
-  <Router>
-    <Flex>
-      <Heading>Kitteh</Heading>
-      <Account />
-    </Flex>
-    <Route path="/login" component={Login} />
-    <Route path="/animals" component={AnimalList} />
-    <Route
-      path="/spaces/:id/animals/new"
-      render={routeProps => <NewAnimal {...routeProps} />}
-    />
-    <Route
-      path="/spaces/:id/fosters/new"
-      render={routeProps => <NewFoster {...routeProps} />}
-    />
-    <Route
-      path="/spaces/:spaceId/fosters/:fosterId"
-      render={routeProps => <Foster {...routeProps} />}
-    />
-    <Route
-      path="/spaces/:spaceId/animals/:animalId"
-      render={routeProps => <Animal {...routeProps} />}
-    />
-    <Route
-      path="/spaces/:id"
-      render={routeProps => <Space {...routeProps} />}
-      exact
-    />
-    <Route path="/" component={SpacesList} exact />
-    <ToastContainer
-      position="bottom-center"
-      closeButton={false}
-      autoClose={3000}
-      hideProgressBar
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable={false}
-      pauseOnHover
-    />
-  </Router>
+  <Box sx={{ padding: 3 }}>
+    <Router>
+      <Flex sx={{ marginBottom: 3 }}>
+        <Heading sx={{ marginRight: 2 }}>😸</Heading>
+        <Account />
+      </Flex>
+      <Route path="/login" component={Login} />
+      <Route path="/animals" component={AnimalList} />
+      <Route
+        path="/spaces/:id/animals/new"
+        render={routeProps => <NewAnimal {...routeProps} />}
+      />
+      <Route
+        path="/spaces/:id/fosters/new"
+        render={routeProps => <NewFoster {...routeProps} />}
+      />
+      <Route
+        path="/spaces/:spaceId/fosters/:fosterId"
+        render={routeProps => <Foster {...routeProps} />}
+      />
+      <Route
+        path="/spaces/:spaceId/animals/:animalId"
+        render={routeProps => <Animal {...routeProps} />}
+      />
+      <Route
+        path="/spaces/:id"
+        render={routeProps => <Space {...routeProps} />}
+        exact
+      />
+      <Route path="/" component={SpacesList} exact />
+      <ToastContainer
+        position="bottom-center"
+        closeButton={false}
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+      />
+    </Router>
+  </Box>
 );
 
 export default App;

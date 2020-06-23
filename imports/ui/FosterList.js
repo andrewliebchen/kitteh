@@ -2,18 +2,18 @@ import { Animals } from "../api/animals";
 import { Box, Text, Heading, Flex, Button } from "theme-ui";
 import { format } from "timeago.js";
 import { Fosters } from "../api/fosters";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import React from "react";
 
 const FosterList = props => (
   <Box>
-    <Flex>
-      <Heading>Fosters</Heading>
-      <Link to={`/spaces/${props.match.params.id}/fosters/new`}>
-        Add New Foster
-      </Link>
+    <Flex sx={{ alignItems: "center" }}>
+      <Heading sx={{ marginRight: 2 }}>Fosters</Heading>
+      <RouterLink to={`/spaces/${props.match.params.id}/fosters/new`}>
+        🆕
+      </RouterLink>
     </Flex>
     <table>
       <thead>
@@ -28,11 +28,11 @@ const FosterList = props => (
           <tr key={foster._id}>
             <td>
               <Text sx={{ fontWeight: "bold" }}>
-                <Link
+                <RouterLink
                   to={`/spaces/${props.match.params.id}/fosters/${foster._id}`}
                 >
                   {foster.name}
-                </Link>
+                </RouterLink>
               </Text>
             </td>
             <td>
