@@ -7,6 +7,8 @@ import { withTracker } from "meteor/react-meteor-data";
 import React from "react";
 import WeightInput from "./WeightInput";
 
+// Move the bar chart into it's own file
+
 const Animal = props => (
   <Box>
     {typeof props.animal !== "undefined" && (
@@ -39,9 +41,26 @@ const Animal = props => (
         <Box sx={{ marginTop: 3 }}>
           <WeightInput {...props.animal} />
           {props.animal.weight.reverse().map(weight => (
-            <Text key={weight.createdAt}>
-              <b>{weight.createdAt}</b> {weight.value}
-            </Text>
+            <Flex key={weight.createdAt} sx={{ alignItems: "center" }}>
+              <Text sx={{ width: 300 }}>
+                <b>{weight.createdAt}</b> {weight.value}
+              </Text>
+              <div
+                style={{
+                  height: 16,
+                  width: "100%",
+                  backgroundColor: "#f3f3f3"
+                }}
+              >
+                <div
+                  style={{
+                    width: (weight.value / 2000) * 100 + "%",
+                    height: "inherit",
+                    backgroundColor: "gray"
+                  }}
+                />
+              </div>
+            </Flex>
           ))}
         </Box>
       </Box>
