@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { Text } from "theme-ui";
 import React from "react";
+import WeightInput from "./WeightInput";
 
 const AnimalTable = props => (
   <table>
@@ -14,6 +15,7 @@ const AnimalTable = props => (
         <th>Lifestage</th>
         <th>Mother</th>
         <th>Foster</th>
+        <th />
         <th />
       </tr>
     </thead>
@@ -47,6 +49,9 @@ const AnimalTable = props => (
             >
               Delete
             </Text>
+          </td>
+          <td>
+            <WeightInput {...animal} />
           </td>
         </tr>
       ))}

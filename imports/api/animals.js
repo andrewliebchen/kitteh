@@ -21,5 +21,11 @@ Meteor.methods({
 
   "animals.remove"(id) {
     return Animals.remove(id);
+  },
+
+  "animals.addWeight"(id, weight) {
+    return Animals.update(id, {
+      $push: { weight: { value: weight, createdAt: Date.now() } }
+    });
   }
 });
