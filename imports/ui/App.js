@@ -9,6 +9,7 @@ import Foster from "./Foster";
 import Login from "./Login";
 import NewAnimal from "./NewAnimal";
 import NewFoster from "./NewFoster";
+import NewSpace from "./NewSpace";
 import React from "react";
 import Space from "./Space";
 import SpacesList from "./SpacesList";
@@ -39,9 +40,12 @@ const App = props => (
         render={routeProps => <Animal {...routeProps} />}
       />
       <Route
+        path="/spaces/new"
+        render={routeProps => <NewSpace {...routeProps} />}
+      />
+      <Route
         path="/spaces/:id"
         render={routeProps => <Space {...routeProps} />}
-        exact
       />
       <Route path="/" component={SpacesList} exact />
       <ToastContainer
