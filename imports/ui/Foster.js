@@ -6,12 +6,13 @@ import { Animals } from "../api/animals";
 import { Link as RouterLink } from "react-router-dom";
 import AnimalTable from "./AnimalTable";
 import EditTextField from "./EditTextField";
+import WeightWizard from "./WeightWizard";
 
 const Foster = props => (
   <Box>
     {typeof props.foster !== "undefined" && (
       <Box>
-        <Flex sx={{ alignItems: "center" }}>
+        <Flex sx={{ alignItems: "center", mb: 3 }}>
           <RouterLink to={`/spaces/${props.match.params.spaceId}`}>
             ⏪
           </RouterLink>
@@ -24,7 +25,10 @@ const Foster = props => (
             />
           </Heading>
         </Flex>
-        <AnimalTable {...props} />
+        <Box sx={{ mb: 3 }}>
+          <AnimalTable {...props} />
+        </Box>
+        <WeightWizard {...props} />
       </Box>
     )}
   </Box>
