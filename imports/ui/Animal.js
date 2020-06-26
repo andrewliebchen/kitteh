@@ -25,13 +25,13 @@ const Animal = props => (
           <b>Updated At</b> {format(props.animal.updatedAt)}
         </Text>
         <Text>
-          <b>Foster</b> {props.animal.fosterID || <Link>Add</Link>}
+          <b>Foster</b> {props.animal.fosterID || <Link>➕</Link>}
         </Text>
         <Text>
           <b>Lifestage</b> {props.animal.lifestage}
         </Text>
         <Text>
-          <b>Mother</b> {props.animal.motherId || <Link>Add</Link>}
+          <b>Mother</b> {props.animal.motherId || <Link>➕</Link>}
         </Text>
         <Text>
           <b>Species</b> {props.animal.species}

@@ -54,7 +54,7 @@ const AnimalTable = props => (
                 Meteor.call("animals.remove", animal._id)
               }
             >
-              Delete
+              💀
             </Link>
           </td>
         </tr>

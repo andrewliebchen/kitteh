@@ -1,5 +1,5 @@
 import { Animals } from "../api/animals";
-import { Box, Text, Heading, Flex, Button } from "theme-ui";
+import { Box, Text, Heading, Flex, Button, Link } from "theme-ui";
 import { format } from "timeago.js";
 import { Fosters } from "../api/fosters";
 import { Link as RouterLink } from "react-router-dom";
@@ -41,14 +41,14 @@ const FosterList = props => (
               <Text>{format(foster.createdAt)}</Text>
             </td>
             <td>
-              <Text
+              <Link
                 onClick={() =>
                   window.confirm("Are you sure you want to delete this?") &&
                   Meteor.call("foster.remove", foster._id)
                 }
               >
-                Delete
-              </Text>
+                💀
+              </Link>
             </td>
           </tr>
         ))}

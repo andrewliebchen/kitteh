@@ -20,4 +20,4 @@ Tracking your foster litters.
 - ~~List of fosters on the fosters page~~
 - Search bar
 - Spaces have tags, animals can be tagged
-- Edit elements
+- ~~Edit elements~~
