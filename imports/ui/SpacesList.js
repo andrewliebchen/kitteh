@@ -28,6 +28,7 @@ const SpacesList = props => (
                 value="name"
                 label={space.name}
                 method="spaces.update"
+                link={`/spaces/${space._id}`}
               />
             </td>
             <td>

@@ -5,6 +5,7 @@ import { Fosters } from "../api/fosters";
 import { Link as RouterLink } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import Bar from "./Bar";
+import EditField from "./EditField";
 import React from "react";
 import WeightInput from "./WeightInput";
 
@@ -16,7 +17,14 @@ const Animal = props => (
           <RouterLink to={`/spaces/${props.match.params.spaceId}`}>
             ⏪
           </RouterLink>
-          <Heading sx={{ marginLeft: 2 }}>{props.animal.name}</Heading>
+          <Heading sx={{ marginLeft: 2 }}>
+            <EditField
+              _id={props.animal._id}
+              value="name"
+              label={props.animal.name}
+              method="animals.update"
+            />
+          </Heading>
         </Flex>
         <Text>
           <b>Created At</b> {format(props.animal.createdAt)}

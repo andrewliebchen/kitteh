@@ -5,6 +5,7 @@ import { Fosters } from "../api/fosters";
 import { Animals } from "../api/animals";
 import { Link as RouterLink } from "react-router-dom";
 import AnimalTable from "./AnimalTable";
+import EditField from "./EditField";
 
 const Foster = props => (
   <Box>
@@ -14,7 +15,14 @@ const Foster = props => (
           <RouterLink to={`/spaces/${props.match.params.spaceId}`}>
             ⏪
           </RouterLink>
-          <Heading sx={{ marginLeft: 2 }}>{props.foster.name}</Heading>
+          <Heading sx={{ marginLeft: 2 }}>
+            <EditField
+              _id={props.foster._id}
+              value="name"
+              label={props.foster.name}
+              method="fosters.update"
+            />
+          </Heading>
         </Flex>
         <AnimalTable {...props} />
       </Box>
