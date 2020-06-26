@@ -1,6 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import { Box, Heading, Flex } from "theme-ui";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Account from "./Account";
 import Animal from "./Animal";
@@ -21,33 +21,37 @@ const App = props => (
         <Heading sx={{ marginRight: 2 }}>😸</Heading>
         <Account />
       </Flex>
-      <Route path="/login" component={Login} />
-      <Route path="/animals" component={AnimalList} />
-      <Route
-        path="/spaces/:id/animals/new"
-        render={routeProps => <NewAnimal {...routeProps} />}
-      />
-      <Route
-        path="/spaces/:id/fosters/new"
-        render={routeProps => <NewFoster {...routeProps} />}
-      />
-      <Route
-        path="/spaces/:spaceId/fosters/:fosterId"
-        render={routeProps => <Foster {...routeProps} />}
-      />
-      <Route
-        path="/spaces/:spaceId/animals/:animalId"
-        render={routeProps => <Animal {...routeProps} />}
-      />
-      <Route
-        path="/spaces/new"
-        render={routeProps => <NewSpace {...routeProps} />}
-      />
-      <Route
-        path="/spaces/:id"
-        render={routeProps => <Space {...routeProps} />}
-      />
-      <Route path="/" component={SpacesList} exact />
+      <Switch>
+        <Route
+          path="/spaces/:spaceId/animals/:animalId"
+          render={routeProps => <Animal {...routeProps} />}
+        />
+        <Route
+          path="/spaces/:id/animals/new"
+          render={routeProps => <NewAnimal {...routeProps} />}
+        />
+
+        <Route
+          path="/spaces/:spaceId/fosters/:fosterId"
+          render={routeProps => <Foster {...routeProps} />}
+        />
+        <Route
+          path="/spaces/:id/fosters/new"
+          render={routeProps => <NewFoster {...routeProps} />}
+        />
+
+        <Route
+          path="/spaces/:id"
+          render={routeProps => <Space {...routeProps} />}
+        />
+        <Route
+          path="/spaces/new"
+          render={routeProps => <NewSpace {...routeProps} />}
+        />
+
+        <Route path="/login" component={Login} />
+        <Route path="/" component={SpacesList} />
+      </Switch>
       <ToastContainer
         position="bottom-center"
         closeButton={false}
