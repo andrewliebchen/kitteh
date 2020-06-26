@@ -4,10 +4,11 @@ import { Meteor } from "meteor/meteor";
 export const Spaces = new Mongo.Collection("spaces");
 
 Meteor.methods({
-  "spaces.insert"() {
+  "spaces.insert"(args) {
     return Spaces.insert({
       createdAt: Date.now(),
-      ownerId: Meteor.userId()
+      ownerId: Meteor.userId(),
+      ...args
     });
   },
 

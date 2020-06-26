@@ -23,7 +23,7 @@ const NewFoster = props => {
       <Flex sx={{ alignItems: "center" }}>
         <Button
           onClick={() =>
-            Meteor.call("spaces.insert", { args }, (err, success) => {
+            Meteor.call("spaces.insert", args, (err, success) => {
               success && toast("Done", { type: "success" });
               setArgs(defaultArgs);
               window.location.href = `/spaces/${success}`;

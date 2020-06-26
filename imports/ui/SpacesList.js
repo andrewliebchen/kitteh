@@ -12,14 +12,22 @@ const SpacesList = props => (
       <RouterLink to="/spaces/new">🆕</RouterLink>
     </Flex>
     <table>
-      <thead></thead>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Created at</th>
+        </tr>
+      </thead>
       <tbody>
         {props.spaces.map(space => (
           <tr key={space._id}>
             <td>
               <RouterLink to={`/spaces/${space._id}`}>
-                <Text>Created at: {space.createdAt}</Text>
+                <Text>{space.name || "Untitled Space"}</Text>
               </RouterLink>
+            </td>
+            <td>
+              <Text>{space.createdAt}</Text>
             </td>
           </tr>
         ))}

@@ -2,9 +2,8 @@ import { format } from "timeago.js";
 import { Link as RouterLink } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { Text, Link } from "theme-ui";
-import React from "react";
-import WeightInput from "./WeightInput";
 import PropTypes from "prop-types";
+import React from "react";
 
 const AnimalTable = props => (
   <table>
@@ -16,7 +15,6 @@ const AnimalTable = props => (
         <th>Lifestage</th>
         <th>Mother</th>
         <th>Foster</th>
-        <th />
         <th />
       </tr>
     </thead>
@@ -56,9 +54,6 @@ const AnimalTable = props => (
             >
               Delete
             </Link>
-          </td>
-          <td>
-            <WeightInput {...animal} />
           </td>
         </tr>
       ))}

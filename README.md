@@ -18,3 +18,6 @@ Tracking your foster litters.
 - Sortable animal/fosters table
 - Context API
 - ~~List of fosters on the fosters page~~
+- Search bar
+- Spaces have tags, animals can be tagged
+- Edit elements
