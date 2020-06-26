@@ -4,6 +4,7 @@ import { Meteor } from "meteor/meteor";
 import { Text, Link } from "theme-ui";
 import PropTypes from "prop-types";
 import React from "react";
+import EditField from "./EditField";
 
 const AnimalTable = props => (
   <table>
@@ -22,13 +23,14 @@ const AnimalTable = props => (
       {props.animals.map(animal => (
         <tr key={animal._id}>
           <td>
-            <Text sx={{ fontWeight: "bold" }}>
-              <RouterLink
-                to={`/spaces/${props.match.params.id}/animals/${animal._id}`}
-              >
-                {animal.name}
-              </RouterLink>
-            </Text>
+            <EditField
+              _id={animal._id}
+              link={`/spaces/${props.match.params.id}/animals/${animal._id}`}
+              sx={{ fontWeight: "bold" }}
+              value="name"
+              label={animal.name}
+              method="animals.update"
+            />
           </td>
           <td>
             <Text>{format(animal.createdAt)}</Text>
