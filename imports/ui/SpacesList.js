@@ -4,7 +4,7 @@ import { Box, Button, Text, Heading, Flex } from "theme-ui";
 import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { Link as RouterLink } from "react-router-dom";
-import EditField from "./EditField";
+import EditTextField from "./EditTextField";
 
 const SpacesList = props => (
   <Box>
@@ -23,7 +23,7 @@ const SpacesList = props => (
         {props.spaces.map(space => (
           <tr key={space._id}>
             <td>
-              <EditField
+              <EditTextField
                 _id={space._id}
                 value="name"
                 label={space.name}

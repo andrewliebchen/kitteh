@@ -6,7 +6,7 @@ Tracking your foster litters.
 
 - Edit animal record
 - Edit foster record
-- Create/edit spaces information
+- ~~Create/edit spaces information~~
 - ~~Add animal weight~~
 - Animal weight graph
   - Set weight limit at Space level

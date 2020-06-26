@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link as RouterLink } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const EditField = props => {
+const EditTextField = props => {
   const [value, setValue] = useState("");
 
   return (
@@ -48,7 +48,7 @@ const EditField = props => {
   );
 };
 
-EditField.propTypes = {
+EditTextField.propTypes = {
   _id: PropTypes.string,
   label: PropTypes.string,
   link: PropTypes.string,
@@ -57,4 +57,4 @@ EditField.propTypes = {
   value: PropTypes.string
 };
 
-export default EditField;
+export default EditTextField;

@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { Spaces } from "../api/spaces";
 import { withTracker } from "meteor/react-meteor-data";
 import AnimalList from "./AnimalList";
-import EditField from "./EditField";
+import EditTextField from "./EditTextField";
 import FosterList from "./FosterList";
 import React from "react";
 
@@ -17,7 +17,7 @@ const Space = props => (
           <Flex sx={{ alignItems: "center" }}>
             <RouterLink to="/">⏪</RouterLink>
             <Heading sx={{ marginLeft: 2 }}>
-              <EditField
+              <EditTextField
                 _id={props.space._id}
                 value="name"
                 label={props.space.name}

@@ -6,7 +6,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import React from "react";
-import EditField from "./EditField";
+import EditTextField from "./EditTextField";
 
 const FosterList = props => (
   <Box>
@@ -28,7 +28,7 @@ const FosterList = props => (
         {props.fosters.map(foster => (
           <tr key={foster._id}>
             <td>
-              <EditField
+              <EditTextField
                 _id={foster._id}
                 link={`/spaces/${props.match.params.id}/fosters/${foster._id}`}
                 sx={{ fontWeight: "bold" }}

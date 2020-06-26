@@ -5,7 +5,7 @@ import { Fosters } from "../api/fosters";
 import { Animals } from "../api/animals";
 import { Link as RouterLink } from "react-router-dom";
 import AnimalTable from "./AnimalTable";
-import EditField from "./EditField";
+import EditTextField from "./EditTextField";
 
 const Foster = props => (
   <Box>
@@ -16,7 +16,7 @@ const Foster = props => (
             ⏪
           </RouterLink>
           <Heading sx={{ marginLeft: 2 }}>
-            <EditField
+            <EditTextField
               _id={props.foster._id}
               value="name"
               label={props.foster.name}
