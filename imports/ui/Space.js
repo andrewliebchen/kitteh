@@ -1,10 +1,11 @@
-import React from "react";
-import { withTracker } from "meteor/react-meteor-data";
 import { Box, Heading, Flex, Input } from "theme-ui";
-import AnimalList from "./AnimalList";
-import FosterList from "./FosterList";
-import { Spaces } from "../api/spaces";
 import { Link as RouterLink } from "react-router-dom";
+import { Spaces } from "../api/spaces";
+import { withTracker } from "meteor/react-meteor-data";
+import AnimalList from "./AnimalList";
+import EditField from "./EditField";
+import FosterList from "./FosterList";
+import React from "react";
 
 const Space = props => (
   <Box>
@@ -16,7 +17,12 @@ const Space = props => (
           <Flex sx={{ alignItems: "center" }}>
             <RouterLink to="/">⏪</RouterLink>
             <Heading sx={{ marginLeft: 2 }}>
-              {props.space.name || "‍Untitled Space"}
+              <EditField
+                _id={props.space._id}
+                value="name"
+                label={props.space.name}
+                method="spaces.update"
+              />
             </Heading>
           </Flex>
           <Input type="search" placeholder="Search..." sx={{ width: 600 }} />

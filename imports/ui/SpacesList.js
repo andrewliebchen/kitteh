@@ -4,6 +4,7 @@ import { Box, Button, Text, Heading, Flex } from "theme-ui";
 import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { Link as RouterLink } from "react-router-dom";
+import EditField from "./EditField";
 
 const SpacesList = props => (
   <Box>
@@ -22,9 +23,12 @@ const SpacesList = props => (
         {props.spaces.map(space => (
           <tr key={space._id}>
             <td>
-              <RouterLink to={`/spaces/${space._id}`}>
-                <Text>{space.name || "Untitled Space"}</Text>
-              </RouterLink>
+              <EditField
+                _id={space._id}
+                value="name"
+                label={space.name}
+                method="spaces.update"
+              />
             </td>
             <td>
               <Text>{space.createdAt}</Text>

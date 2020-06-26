@@ -21,3 +21,4 @@ Tracking your foster litters.
 - Search bar
 - Spaces have tags, animals can be tagged
 - ~~Edit elements~~
+- Fix animal view: animals table shouldn't be rendered
