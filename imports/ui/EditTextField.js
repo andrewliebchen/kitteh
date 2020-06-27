@@ -1,6 +1,5 @@
 import { Box, Text, Input, Flex, Link } from "theme-ui";
 import { Edit, Save, X } from "react-feather";
-import { Link as RouterLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
@@ -38,7 +37,7 @@ const EditTextField = props => {
         <Flex sx={{ alignItems: "center" }}>
           <Text sx={props.sx}>
             {props.link ? (
-              <RouterLink to={props.link}>{props.label}</RouterLink>
+              <Link href={props.link}>{props.label}</Link>
             ) : (
               props.label
             )}

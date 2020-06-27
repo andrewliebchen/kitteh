@@ -17,7 +17,13 @@ import SpacesList from "./SpacesList";
 const App = props => (
   <Box sx={{ padding: 3 }}>
     <Router>
-      <Flex sx={{ marginBottom: 3 }}>
+      <Flex
+        sx={{
+          marginBottom: 3,
+          alignItems: "center",
+          justifyContent: "space-between"
+        }}
+      >
         <Heading sx={{ marginRight: 2 }}>😸</Heading>
         <Account />
       </Flex>

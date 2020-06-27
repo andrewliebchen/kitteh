@@ -1,5 +1,4 @@
 import { Box, Button, Text, Heading, Flex } from "theme-ui";
-import { Link as RouterLink } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { PlusSquare } from "react-feather";
 import { Spaces } from "../api/spaces";
@@ -11,9 +10,9 @@ const SpacesList = props => (
   <Box>
     <Flex sx={{ alignItems: "center" }}>
       <Heading sx={{ marginRight: 2 }}>Spaces</Heading>
-      <RouterLink to="/spaces/new">
+      <Link href="/spaces/new">
         <PlusSquare />
-      </RouterLink>
+      </Link>
     </Flex>
     <table>
       <thead>

@@ -19,7 +19,7 @@ export default {
   colors: {
     text: "#000",
     background: "#fff",
-    primary: "#07c",
+    primary: "#0066ff",
     secondary: "#30c",
     muted: "#f6f6f6"
   },
@@ -78,7 +78,8 @@ export default {
       lineHeight: "body"
     },
     a: {
-      color: "primary"
+      color: "primary",
+      cursor: "pointer"
     },
     pre: {
       fontFamily: "monospace",

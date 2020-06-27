@@ -1,8 +1,9 @@
 import { Animals } from "../api/animals";
+import { ArrowLeft } from "react-feather";
 import { Box, Heading, Flex, Text, Link } from "theme-ui";
 import { format } from "timeago.js";
 import { Fosters } from "../api/fosters";
-import { Link as RouterLink } from "react-router-dom";
+import { Plus } from "react-feather";
 import { withTracker } from "meteor/react-meteor-data";
 import Bar from "./Bar";
 import EditTextField from "./EditTextField";
@@ -14,9 +15,9 @@ const Animal = props => (
     {typeof props.animal !== "undefined" && (
       <Box>
         <Flex sx={{ alignItems: "center" }}>
-          <RouterLink to={`/spaces/${props.match.params.spaceId}`}>
-            ⏪
-          </RouterLink>
+          <Link href={`/spaces/${props.match.params.spaceId}`}>
+            <ArrowLeft />
+          </Link>
           <Heading sx={{ marginLeft: 2 }}>
             <EditTextField
               _id={props.animal._id}
@@ -33,13 +34,23 @@ const Animal = props => (
           <b>Updated At</b> {format(props.animal.updatedAt)}
         </Text>
         <Text>
-          <b>Foster</b> {props.animal.fosterID || <Link>➕</Link>}
+          <b>Foster</b>{" "}
+          {props.animal.fosterID || (
+            <Link>
+              <Plus />
+            </Link>
+          )}
         </Text>
         <Text>
           <b>Lifestage</b> {props.animal.lifestage}
         </Text>
         <Text>
-          <b>Mother</b> {props.animal.motherId || <Link>➕</Link>}
+          <b>Mother</b>{" "}
+          {props.animal.motherId || (
+            <Link>
+              <Plus />
+            </Link>
+          )}
         </Text>
         <Text>
           <b>Species</b> {props.animal.species}

@@ -1,6 +1,5 @@
 import { Animals } from "../api/animals";
-import { Box, Heading, Flex, IconButton } from "theme-ui";
-import { Link as RouterLink } from "react-router-dom";
+import { Box, Heading, Flex, Link } from "theme-ui";
 import { PlusSquare } from "react-feather";
 import { withTracker } from "meteor/react-meteor-data";
 import AnimalTable from "./AnimalTable";
@@ -11,9 +10,9 @@ const AnimalList = props => (
   <Box>
     <Flex sx={{ alignItems: "center" }}>
       <Heading sx={{ marginRight: 2 }}>Animals</Heading>
-      <RouterLink to={`/spaces/${props.match.params.id}/animals/new`}>
+      <Link href={`/spaces/${props.match.params.id}/animals/new`}>
         <PlusSquare />
-      </RouterLink>
+      </Link>
     </Flex>
     <AnimalTable {...props} />
   </Box>

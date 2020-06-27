@@ -10,7 +10,7 @@ const Account = props => (
     {props.user ? (
       <Avatar
         src={props.user.services.facebook.picture.data.url}
-        sx={{ height: 24, width: 24 }}
+        sx={{ height: 36, width: 36 }}
         onClick={() =>
           Meteor.logout(error => error || window.location.replace("/login"))
         }

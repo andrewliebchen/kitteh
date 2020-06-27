@@ -1,11 +1,11 @@
-import React from "react";
-import { Box, Heading, Flex } from "theme-ui";
-import { withTracker } from "meteor/react-meteor-data";
-import { Fosters } from "../api/fosters";
 import { Animals } from "../api/animals";
-import { Link as RouterLink } from "react-router-dom";
+import { Box, Heading, Flex, Link } from "theme-ui";
+import { Fosters } from "../api/fosters";
+import { withTracker } from "meteor/react-meteor-data";
+import { ArrowLeft } from "react-feather";
 import AnimalTable from "./AnimalTable";
 import EditTextField from "./EditTextField";
+import React from "react";
 import WeightWizard from "./WeightWizard";
 
 const Foster = props => (
@@ -13,9 +13,9 @@ const Foster = props => (
     {typeof props.foster !== "undefined" && (
       <Box>
         <Flex sx={{ alignItems: "center", mb: 3 }}>
-          <RouterLink to={`/spaces/${props.match.params.spaceId}`}>
-            ⏪
-          </RouterLink>
+          <Link href={`/spaces/${props.match.params.spaceId}`}>
+            <ArrowLeft />
+          </Link>
           <Heading sx={{ marginLeft: 2 }}>
             <EditTextField
               _id={props.foster._id}

@@ -1,5 +1,4 @@
 import { format } from "timeago.js";
-import { Link as RouterLink } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { Text, Link } from "theme-ui";
 import { Trash } from "react-feather";
