@@ -3,17 +3,19 @@ import { Box, Text, Heading, Flex, Button, Link } from "theme-ui";
 import { format } from "timeago.js";
 import { Fosters } from "../api/fosters";
 import { Link as RouterLink } from "react-router-dom";
+import { PlusSquare } from "react-feather";
 import { withTracker } from "meteor/react-meteor-data";
+import { Trash } from "react-feather";
+import EditTextField from "./EditTextField";
 import PropTypes from "prop-types";
 import React from "react";
-import EditTextField from "./EditTextField";
 
 const FosterList = props => (
   <Box>
     <Flex sx={{ alignItems: "center" }}>
       <Heading sx={{ marginRight: 2 }}>Fosters</Heading>
       <RouterLink to={`/spaces/${props.match.params.id}/fosters/new`}>
-        🆕
+        <PlusSquare />
       </RouterLink>
     </Flex>
     <table>
@@ -47,7 +49,7 @@ const FosterList = props => (
                   Meteor.call("foster.remove", foster._id)
                 }
               >
-                💀
+                <Trash />
               </Link>
             </td>
           </tr>

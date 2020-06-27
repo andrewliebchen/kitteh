@@ -2,9 +2,10 @@ import { format } from "timeago.js";
 import { Link as RouterLink } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { Text, Link } from "theme-ui";
+import { Trash } from "react-feather";
+import EditTextField from "./EditTextField";
 import PropTypes from "prop-types";
 import React from "react";
-import EditTextField from "./EditTextField";
 
 const AnimalTable = props => (
   <table>
@@ -54,7 +55,7 @@ const AnimalTable = props => (
                 Meteor.call("animals.remove", animal._id)
               }
             >
-              💀
+              <Trash />
             </Link>
           </td>
         </tr>

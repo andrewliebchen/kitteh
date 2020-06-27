@@ -1,16 +1,19 @@
-import React from "react";
-import { Spaces } from "../api/spaces";
 import { Box, Button, Text, Heading, Flex } from "theme-ui";
-import { withTracker } from "meteor/react-meteor-data";
-import { Meteor } from "meteor/meteor";
 import { Link as RouterLink } from "react-router-dom";
+import { Meteor } from "meteor/meteor";
+import { PlusSquare } from "react-feather";
+import { Spaces } from "../api/spaces";
+import { withTracker } from "meteor/react-meteor-data";
 import EditTextField from "./EditTextField";
+import React from "react";
 
 const SpacesList = props => (
   <Box>
     <Flex sx={{ alignItems: "center" }}>
       <Heading sx={{ marginRight: 2 }}>Spaces</Heading>
-      <RouterLink to="/spaces/new">🆕</RouterLink>
+      <RouterLink to="/spaces/new">
+        <PlusSquare />
+      </RouterLink>
     </Flex>
     <table>
       <thead>

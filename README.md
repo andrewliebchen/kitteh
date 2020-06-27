@@ -10,11 +10,13 @@ Tracking your foster litters.
 - ~~Add animal weight~~
 - Animal weight graph
   - Set weight limit at Space level
-  - Turn green when it passes total
+  - ~~Turn green when it passes total~~
   - Animate
-  - Move into own file
+  - ~~Move into own file~~
 - Send invitation to foster to sign up
-- Foster view for inputting daily weights
+- Weight Wizard: Foster view for inputting daily weights
+  - ~~Stub it in~~
+  - Make it work for reals
 - Sortable animal/fosters table
 - Context API
 - ~~List of fosters on the fosters page~~
@@ -22,3 +24,5 @@ Tracking your foster litters.
 - Spaces have tags, animals can be tagged
 - ~~Edit elements~~
 - ~~Fix animal view: animals table shouldn't be rendered~~
+- ~~Add icons~~
+- Improve visual design

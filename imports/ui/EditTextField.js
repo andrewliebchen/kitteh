@@ -1,8 +1,9 @@
-import React, { useState } from "react";
 import { Box, Text, Input, Flex, Link } from "theme-ui";
-import PropTypes from "prop-types";
+import { Edit, Save, X } from "react-feather";
 import { Link as RouterLink } from "react-router-dom";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 const EditTextField = props => {
   const [value, setValue] = useState("");
@@ -16,6 +17,9 @@ const EditTextField = props => {
             value={value}
             onChange={event => setValue(event.target.value)}
           />
+          <Link onClick={() => setValue("")} sx={{ ml: 2 }}>
+            <X />
+          </Link>
           <Link
             onClick={() => {
               let args = {};
@@ -27,7 +31,7 @@ const EditTextField = props => {
             }}
             sx={{ ml: 2 }}
           >
-            💽
+            <Save />
           </Link>
         </Flex>
       ) : (
@@ -40,7 +44,7 @@ const EditTextField = props => {
             )}
           </Text>
           <Link onClick={() => setValue(props.label)} sx={{ ml: 2 }}>
-            ✏️
+            <Edit />
           </Link>
         </Flex>
       )}
