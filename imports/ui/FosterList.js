@@ -16,7 +16,7 @@ const FosterList = props => (
   <Box>
     <Flex sx={{ alignItems: "center" }}>
       <Heading sx={{ marginRight: 2 }}>Fosters</Heading>
-      <Link href={`/spaces/${props.match.params.id}/fosters/new`}>
+      <Link href={`/spaces/${props.match.params.spaceId}/fosters/new`}>
         <PlusSquare />
       </Link>
     </Flex>
@@ -34,7 +34,7 @@ const FosterList = props => (
             <td>
               <EditTextField
                 _id={foster._id}
-                link={`/spaces/${props.match.params.id}/fosters/${foster._id}`}
+                link={`/spaces/${props.match.params.spaceId}/fosters/${foster._id}`}
                 sx={{ fontWeight: "bold" }}
                 value="name"
                 label={foster.name}
@@ -62,7 +62,7 @@ const FosterList = props => (
 );
 
 export default withTracker(props => {
-  let spaceId = props ? props.match.params.id : "";
+  let spaceId = props ? props.match.params.spaceId : "";
 
   return {
     animals: Animals.find({ spaceId: spaceId }).fetch(),

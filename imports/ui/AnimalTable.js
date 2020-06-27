@@ -28,7 +28,7 @@ const AnimalTable = props => (
           <td>
             <EditTextField
               _id={animal._id}
-              link={`/spaces/${props.match.params.id}/animals/${animal._id}`}
+              link={`/spaces/${props.match.params.spaceId}/animals/${animal._id}`}
               sx={{ fontWeight: "bold" }}
               value="name"
               label={animal.name}

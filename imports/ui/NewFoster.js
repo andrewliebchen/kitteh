@@ -21,12 +21,12 @@ const NewFoster = props => {
         onChange={event => setArgs({ ...args, name: event.target.value })}
       />
       <Flex sx={{ alignItems: "center" }}>
-        <Link to={`/spaces/${props.match.params.id}`}>Done</Link>
+        <Link to={`/spaces/${props.match.params.spaceId}`}>Done</Link>
         <Button
           onClick={() =>
             Meteor.call(
               "fosters.insert",
-              { spaceId: props.match.params.id, ...args },
+              { spaceId: props.match.params.spaceId, ...args },
               (err, success) => {
                 success && toast("Done", { type: "success" });
                 setArgs(defaultArgs);

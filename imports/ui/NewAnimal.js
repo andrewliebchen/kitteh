@@ -85,12 +85,12 @@ const NewAnimal = props => {
         ))}
       </Field>
       <Flex sx={{ alignItems: "center" }}>
-        <Link to={`/spaces/${props.match.params.id}`}>Done</Link>
+        <Link to={`/spaces/${props.match.params.spaceId}`}>Done</Link>
         <Button
           onClick={() =>
             Meteor.call(
               "animals.insert",
-              { spaceId: props.match.params.id, ...args },
+              { spaceId: props.match.params.spaceId, ...args },
               (err, success) => {
                 success && toast("Done", { type: "success" });
                 setArgs(defaultArgs);
@@ -106,7 +106,7 @@ const NewAnimal = props => {
 };
 
 export default withTracker(props => {
-  let spaceId = props ? props.match.params.id : "";
+  let spaceId = props ? props.match.params.spaceId : "";
 
   return {
     animals: Animals.find({ spaceId: spaceId }).fetch(),

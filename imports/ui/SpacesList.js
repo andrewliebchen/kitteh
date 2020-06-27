@@ -1,4 +1,4 @@
-import { Box, Button, Text, Heading, Flex } from "theme-ui";
+import { Box, Button, Text, Heading, Flex, Link } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { PlusSquare } from "react-feather";
 import { Spaces } from "../api/spaces";

@@ -10,7 +10,7 @@ const AnimalList = props => (
   <Box>
     <Flex sx={{ alignItems: "center" }}>
       <Heading sx={{ marginRight: 2 }}>Animals</Heading>
-      <Link href={`/spaces/${props.match.params.id}/animals/new`}>
+      <Link href={`/spaces/${props.match.params.spaceId}/animals/new`}>
         <PlusSquare />
       </Link>
     </Flex>
@@ -19,7 +19,7 @@ const AnimalList = props => (
 );
 
 export default withTracker(props => {
-  let spaceId = props ? props.match.params.id : "";
+  let spaceId = props ? props.match.params.spaceId : "";
 
   return {
     animals: Animals.find({ spaceId: spaceId }).fetch()

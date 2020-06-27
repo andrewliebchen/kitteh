@@ -40,7 +40,7 @@ const Space = props => (
 );
 
 export default withTracker(props => {
-  let spaceId = props ? props.match.params.id : "";
+  let spaceId = props ? props.match.params.spaceId : "";
 
   return {
     space: Spaces.findOne(spaceId)

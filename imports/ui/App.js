@@ -34,12 +34,12 @@ const App = props => (
           render={routeProps => <Animal {...routeProps} />}
         />
         <Route
-          path="/spaces/:id/animals/new"
+          path="/spaces/:spaceId/animals/new"
           render={routeProps => <NewAnimal {...routeProps} />}
         />
 
         <Route
-          path="/spaces/:id/fosters/:fosterId/weights"
+          path="/spaces/:spaceId/fosters/:fosterId/weights"
           render={routeProps => <WeightWizard {...routeProps} />}
         />
         <Route
@@ -47,12 +47,12 @@ const App = props => (
           render={routeProps => <Foster {...routeProps} />}
         />
         <Route
-          path="/spaces/:id/fosters/new"
+          path="/spaces/:spaceId/fosters/new"
           render={routeProps => <NewFoster {...routeProps} />}
         />
 
         <Route
-          path="/spaces/:id"
+          path="/spaces/:spaceId"
           render={routeProps => <Space {...routeProps} />}
         />
         <Route
