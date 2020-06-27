@@ -1,13 +1,16 @@
 import { Animals } from "../api/animals";
 import { Box, Text, Heading, Flex, Button, Link } from "theme-ui";
-import { format } from "timeago.js";
 import { Fosters } from "../api/fosters";
 import { PlusSquare } from "react-feather";
-import { withTracker } from "meteor/react-meteor-data";
 import { Trash } from "react-feather";
+import { withTracker } from "meteor/react-meteor-data";
+import dayjs from "dayjs";
 import EditTextField from "./EditTextField";
 import PropTypes from "prop-types";
 import React from "react";
+import RelativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(RelativeTime);
 
 const FosterList = props => (
   <Box>
@@ -39,7 +42,7 @@ const FosterList = props => (
               />
             </td>
             <td>
-              <Text>{format(foster.createdAt)}</Text>
+              <Text>{dayjs(foster.createdAt).fromNow()}</Text>
             </td>
             <td>
               <Link

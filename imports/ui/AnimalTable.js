@@ -1,10 +1,13 @@
-import { format } from "timeago.js";
 import { Meteor } from "meteor/meteor";
 import { Text, Link } from "theme-ui";
 import { Trash } from "react-feather";
+import dayjs from "dayjs";
 import EditTextField from "./EditTextField";
 import PropTypes from "prop-types";
 import React from "react";
+import RelativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(RelativeTime);
 
 const AnimalTable = props => (
   <table>
@@ -33,7 +36,7 @@ const AnimalTable = props => (
             />
           </td>
           <td>
-            <Text>{format(animal.createdAt)}</Text>
+            <Text>{dayjs(animal.createdAt).fromNow()}</Text>
           </td>
           <td>
             <Text>{animal.type}</Text>

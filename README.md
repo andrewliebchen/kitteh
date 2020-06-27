@@ -17,7 +17,7 @@ Tracking your foster litters.
 - Weight Wizard: Foster view for inputting daily weights
   - ~~Stub it in~~
   - Make it work for reals
-- Sortable animal/fosters table
+- Sortable animal/fosters table (`react-table`)
 - Context API
 - ~~List of fosters on the fosters page~~
 - Search bar
@@ -26,3 +26,4 @@ Tracking your foster litters.
 - ~~Fix animal view: animals table shouldn't be rendered~~
 - ~~Add icons~~
 - Improve visual design
+- Simplify routes

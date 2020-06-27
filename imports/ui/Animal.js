@@ -1,14 +1,17 @@
 import { Animals } from "../api/animals";
 import { ArrowLeft } from "react-feather";
 import { Box, Heading, Flex, Text, Link } from "theme-ui";
-import { format } from "timeago.js";
 import { Fosters } from "../api/fosters";
 import { Plus } from "react-feather";
 import { withTracker } from "meteor/react-meteor-data";
 import Bar from "./Bar";
+import dayjs from "dayjs";
 import EditTextField from "./EditTextField";
 import React from "react";
 import WeightInput from "./WeightInput";
+import RelativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(RelativeTime);
 
 const Animal = props => (
   <Box>
@@ -28,10 +31,10 @@ const Animal = props => (
           </Heading>
         </Flex>
         <Text>
-          <b>Created At</b> {format(props.animal.createdAt)}
+          <b>Created At</b> {dayjs(props.animal.createdAt).fromNow()}
         </Text>
         <Text>
-          <b>Updated At</b> {format(props.animal.updatedAt)}
+          <b>Updated At</b> {dayjs(props.animal.updatedAt).fromNow()}
         </Text>
         <Text>
           <b>Foster</b>{" "}

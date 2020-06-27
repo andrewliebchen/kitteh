@@ -13,6 +13,7 @@ import NewSpace from "./NewSpace";
 import React from "react";
 import Space from "./Space";
 import SpacesList from "./SpacesList";
+import WeightWizard from "./WeightWizard";
 
 const App = props => (
   <Box sx={{ padding: 3 }}>
@@ -37,6 +38,10 @@ const App = props => (
           render={routeProps => <NewAnimal {...routeProps} />}
         />
 
+        <Route
+          path="/spaces/:id/fosters/:fosterId/weights"
+          render={routeProps => <WeightWizard {...routeProps} />}
+        />
         <Route
           path="/spaces/:spaceId/fosters/:fosterId"
           render={routeProps => <Foster {...routeProps} />}
