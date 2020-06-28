@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import WeightInput from "./WeightInput";
 import { toast } from "react-toastify";
 import { Meteor } from "meteor/meteor";
+import { ArrowLeft } from "react-feather";
 
 const WeightWizard = props => {
   const [index, setIndex] = useState(0);
@@ -19,10 +20,16 @@ const WeightWizard = props => {
 
   return (
     <Box>
-      <Link href={backHref}>Go back</Link>
       {props.animals.length > 0 && (
         <Box>
-          <Text>{dayjs(Date.now()).format("MMMM D")}</Text>
+          <Flex sx={{ alignItems: "center" }}>
+            <Link href={backHref} sx={{ mr: 2 }}>
+              <ArrowLeft />
+            </Link>
+            <Text>
+              Recording weights for {dayjs(Date.now()).format("MMMM D")}
+            </Text>
+          </Flex>
           <Heading>How much does {animal.name} weigh?</Heading>
           <Input
             type="number"
