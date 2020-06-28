@@ -14,6 +14,7 @@ import React from "react";
 import Space from "./Space";
 import SpacesList from "./SpacesList";
 import WeightWizard from "./WeightWizard";
+import NewTag from "./NewTag";
 
 const App = props => (
   <Box sx={{ padding: 3 }}>
@@ -49,6 +50,10 @@ const App = props => (
         <Route
           path="/spaces/:spaceId/fosters/new"
           render={routeProps => <NewFoster {...routeProps} />}
+        />
+        <Route
+          path="/spaces/:spaceId/tags/new"
+          render={routeProps => <NewTag {...routeProps} />}
         />
 
         <Route

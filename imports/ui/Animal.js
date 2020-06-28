@@ -1,6 +1,6 @@
 import { Animals } from "../api/animals";
 import { ArrowLeft } from "react-feather";
-import { Box, Heading, Flex, Text, Link } from "theme-ui";
+import { Box, Heading, Flex, Text, Link, Select } from "theme-ui";
 import { Fosters } from "../api/fosters";
 import { Plus } from "react-feather";
 import { withTracker } from "meteor/react-meteor-data";
@@ -10,6 +10,7 @@ import EditTextField from "./EditTextField";
 import React from "react";
 import WeightInput from "./WeightInput";
 import RelativeTime from "dayjs/plugin/relativeTime";
+import Tag from "./Tag";
 
 dayjs.extend(RelativeTime);
 
@@ -58,6 +59,14 @@ const Animal = props => (
         <Text>
           <b>Species</b> {props.animal.species}
         </Text>
+        <Flex sx={{ alignItems: "center" }}>
+          {props.animal.tags.map(tag => (
+            <Tag key={tag._id} label={tag.label} />
+          ))}
+          <Link>
+            <Plus />
+          </Link>
+        </Flex>
 
         <Box sx={{ marginTop: 3 }}>
           <WeightInput {...props.animal} />

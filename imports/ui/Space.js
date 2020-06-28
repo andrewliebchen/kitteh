@@ -7,6 +7,7 @@ import EditTextField from "./EditTextField";
 import FosterList from "./FosterList";
 import React from "react";
 import SpaceSearch from "./SpaceSearch";
+import TagList from "./TagList";
 
 const Space = props => (
   <Box>
@@ -33,7 +34,10 @@ const Space = props => (
         <Box sx={{ mb: 3 }}>
           <AnimalList {...props} />
         </Box>
-        <FosterList {...props} />
+        <Box sx={{ mb: 3 }}>
+          <FosterList {...props} />
+        </Box>
+        <TagList {...props} />
       </Box>
     )}
   </Box>
