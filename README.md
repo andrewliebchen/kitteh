@@ -21,7 +21,7 @@ Tracking your foster litters.
 - Context API
 - ~~List of fosters on the fosters page~~
 - Search bar
-- Spaces have tags, animals can be tagged
+- ~~Spaces have tags,~~ animals can be tagged
 - ~~Edit elements~~
 - ~~Fix animal view: animals table shouldn't be rendered~~
 - ~~Add icons~~

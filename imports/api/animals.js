@@ -27,5 +27,11 @@ Meteor.methods({
     return Animals.update(id, {
       $push: { weight: { value: weight, createdAt: Date.now() } }
     });
+  },
+
+  "animals.addTag"(id, tagId) {
+    return Animals.update(id, {
+      $push: { tags: tagId }
+    });
   }
 });

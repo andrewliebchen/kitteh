@@ -11,6 +11,8 @@ import React from "react";
 import WeightInput from "./WeightInput";
 import RelativeTime from "dayjs/plugin/relativeTime";
 import Tag from "./Tag";
+import { Tags } from "../api/tags";
+import AddTag from "./AddTag";
 
 dayjs.extend(RelativeTime);
 
@@ -60,12 +62,13 @@ const Animal = props => (
           <b>Species</b> {props.animal.species}
         </Text>
         <Flex sx={{ alignItems: "center" }}>
-          {props.animal.tags.map(tag => (
-            <Tag key={tag._id} label={tag.label} />
-          ))}
-          <Link>
-            <Plus />
-          </Link>
+          <Text sx={{ fontWeight: "bold" }}>Tags</Text>
+          {props.animal.tags &&
+            [...new Set(props.animal.tags)].map(animalTagId => {
+              const tag = props.tags.find(tag => tag._id === animalTagId);
+              return <Tag {...tag} />;
+            })}
+          <AddTag {...props} />
         </Flex>
 
         <Box sx={{ marginTop: 3 }}>
@@ -86,8 +89,10 @@ const Animal = props => (
 
 export default withTracker(props => {
   let animalId = props ? props.match.params.animalId : "";
+  let spaceId = props ? props.match.params.spaceId : "";
 
   return {
-    animal: Animals.findOne(animalId)
+    animal: Animals.findOne(animalId),
+    tags: Tags.find({ spaceId: spaceId }).fetch()
   };
 })(Animal);

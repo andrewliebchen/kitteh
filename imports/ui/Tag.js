@@ -24,4 +24,9 @@ const Tag = props => (
   </Box>
 );
 
+Tag.propTypes = {
+  color: PropTypes.string,
+  label: PropTypes.string
+};
+
 export default Tag;
