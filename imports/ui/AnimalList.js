@@ -1,5 +1,6 @@
 import { Animals } from "../api/animals";
 import { Box, Heading, Flex, Link } from "theme-ui";
+import { Fosters } from "../api/fosters";
 import { PlusSquare } from "react-feather";
 import { withTracker } from "meteor/react-meteor-data";
 import AnimalTable from "./AnimalTable";
@@ -22,6 +23,7 @@ export default withTracker(props => {
   let spaceId = props ? props.match.params.spaceId : "";
 
   return {
-    animals: Animals.find({ spaceId: spaceId }).fetch()
+    animals: Animals.find({ spaceId: spaceId }).fetch(),
+    fosters: Fosters.find({ spaceId: spaceId }).fetch()
   };
 })(AnimalList);

@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import { PlusSquare } from "react-feather";
 import { Spaces } from "../api/spaces";
 import { withTracker } from "meteor/react-meteor-data";
+import dayjs from "dayjs";
 import EditTextField from "./EditTextField";
 import React from "react";
 
@@ -34,7 +35,7 @@ const SpacesList = props => (
               />
             </td>
             <td>
-              <Text>{space.createdAt}</Text>
+              <Text>{dayjs(space.createdAt).fromNow()}</Text>
             </td>
           </tr>
         ))}

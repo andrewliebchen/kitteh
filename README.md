@@ -4,8 +4,9 @@ Tracking your foster litters.
 
 ## Todos
 
-- Edit animal record
-- Edit foster record
+- Edit animal/foster record
+  - ~~Name~~
+  - Enum values
 - ~~Create/edit spaces information~~
 - ~~Add animal weight~~
 - Animal weight graph
@@ -13,6 +14,7 @@ Tracking your foster litters.
   - ~~Turn green when it passes total~~
   - Animate
   - ~~Move into own file~~
+  - Delete a weight
 - Send invitation to foster to sign up
 - ~~Weight Wizard: Foster view for inputting daily weights~~
   - ~~Stub it in~~
