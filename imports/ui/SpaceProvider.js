@@ -1,6 +1,7 @@
 import { Animals } from "../api/animals";
 import { Fosters } from "../api/fosters";
 import { Spaces } from "../api/spaces";
+import { Tags } from "../api/tags";
 import { withTracker } from "meteor/react-meteor-data";
 import React from "react";
 import SpaceContext from "./SpaceContext";
@@ -15,6 +16,7 @@ export default withTracker(props => {
   return {
     animals: Animals.find({ spaceId: spaceId }).fetch(),
     fosters: Fosters.find({ spaceId: spaceId }).fetch(),
-    space: Spaces.findOne(spaceId)
+    space: Spaces.findOne(spaceId),
+    tags: Tags.find({ spaceId: spaceId }).fetch()
   };
 })(SpaceProvider);
