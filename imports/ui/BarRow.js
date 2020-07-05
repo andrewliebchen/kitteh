@@ -16,10 +16,10 @@ const BarRow = props => (
 );
 
 BarRow.propTypes = {
+  _id: PropTypes.string,
   createdAt: PropTypes.number,
-  value: PropTypes.number,
   name: PropTypes.string,
-  _id: PropTypes.string
+  value: PropTypes.string
 };
 
 export default BarRow;

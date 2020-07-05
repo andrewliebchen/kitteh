@@ -29,4 +29,4 @@ Tracking your foster litters.
 - ~~Add icons~~
 - Improve visual design
 - ~~Fix routes~~
-- Animal weights graph on foster page
+- ~~Animal weights graph on foster page~~
