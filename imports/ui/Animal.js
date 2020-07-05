@@ -3,16 +3,16 @@ import { ArrowLeft } from "react-feather";
 import { Box, Heading, Flex, Text, Link, Select } from "theme-ui";
 import { Fosters } from "../api/fosters";
 import { Plus } from "react-feather";
+import { Tags } from "../api/tags";
 import { withTracker } from "meteor/react-meteor-data";
-import Bar from "./Bar";
+import AddTag from "./AddTag";
+import BarRow from "./BarRow";
 import dayjs from "dayjs";
 import EditTextField from "./EditTextField";
 import React from "react";
-import WeightInput from "./WeightInput";
 import RelativeTime from "dayjs/plugin/relativeTime";
 import Tag from "./Tag";
-import { Tags } from "../api/tags";
-import AddTag from "./AddTag";
+import WeightInput from "./WeightInput";
 
 dayjs.extend(RelativeTime);
 
@@ -74,12 +74,7 @@ const Animal = props => (
         <Box sx={{ marginTop: 3 }}>
           <WeightInput {...props.animal} />
           {props.animal.weight.reverse().map(weight => (
-            <Flex key={weight.createdAt} sx={{ alignItems: "center" }}>
-              <Text sx={{ width: 300 }}>
-                <b>{weight.createdAt}</b> {weight.value}
-              </Text>
-              <Bar value={weight.value} />
-            </Flex>
+            <BarRow key={weight.createdAt} {...weight} />
           ))}
         </Box>
       </Box>
