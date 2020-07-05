@@ -8,39 +8,46 @@ import FosterList from "./FosterList";
 import React from "react";
 import SpaceSearch from "./SpaceSearch";
 import TagList from "./TagList";
+import SpaceProvider from "./SpaceProvider";
 
 const Space = props => (
-  <Box>
-    {typeof props.space !== "undefined" && (
-      <Box>
-        <Flex
-          sx={{ alignItems: "center", justifyContent: "space-between", mb: 3 }}
-        >
-          <Flex sx={{ alignItems: "center" }}>
-            <Link href="/">
-              <ArrowLeft />
-            </Link>
-            <Heading sx={{ marginLeft: 2 }}>
-              <EditTextField
-                _id={props.space._id}
-                value="name"
-                label={props.space.name}
-                method="spaces.update"
-              />
-            </Heading>
+  <SpaceProvider {...props}>
+    <Box>
+      {typeof props.space !== "undefined" && (
+        <Box>
+          <Flex
+            sx={{
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 3
+            }}
+          >
+            <Flex sx={{ alignItems: "center" }}>
+              <Link href="/">
+                <ArrowLeft />
+              </Link>
+              <Heading sx={{ marginLeft: 2 }}>
+                <EditTextField
+                  _id={props.space._id}
+                  value="name"
+                  label={props.space.name}
+                  method="spaces.update"
+                />
+              </Heading>
+            </Flex>
+            <SpaceSearch />
           </Flex>
-          <SpaceSearch />
-        </Flex>
-        <Box sx={{ mb: 3 }}>
-          <AnimalList {...props} />
+          <Box sx={{ mb: 3 }}>
+            <AnimalList {...props} />
+          </Box>
+          <Box sx={{ mb: 3 }}>
+            <FosterList {...props} />
+          </Box>
+          <TagList {...props} />
         </Box>
-        <Box sx={{ mb: 3 }}>
-          <FosterList {...props} />
-        </Box>
-        <TagList {...props} />
-      </Box>
-    )}
-  </Box>
+      )}
+    </Box>
+  </SpaceProvider>
 );
 
 export default withTracker(props => {
