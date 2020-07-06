@@ -20,7 +20,7 @@ Tracking your foster litters.
   - ~~Stub it in~~
   - ~~Make it work for reals~~
 - Sortable animal/fosters table (`react-table`)
-- Context API
+- ~~Context API~~
 - ~~List of fosters on the fosters page~~
 - Search bar
 - ~~Spaces have tags,~~ animals can be tagged

@@ -1,16 +1,12 @@
-import { Animals } from "../api/animals";
 import { ArrowLeft } from "react-feather";
-import { Box, Heading, Flex, Link, Text } from "theme-ui";
-import { Fosters } from "../api/fosters";
-import { withTracker } from "meteor/react-meteor-data";
+import { Box, Heading, Flex, Link } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import AnimalTable from "./AnimalTable";
 import BarRow from "./BarRow";
-import dayjs from "dayjs";
 import EditTextField from "./EditTextField";
+import FosterContext from "./FosterContext";
 import React from "react";
 import sortBy from "lodash.sortby";
-import FosterContext from "./FosterContext";
-import { isReady } from "../utils/helpers";
 
 const Foster = props => (
   <FosterContext.Consumer>

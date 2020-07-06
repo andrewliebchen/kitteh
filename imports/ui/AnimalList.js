@@ -1,8 +1,6 @@
 import { Box, Heading, Flex, Link } from "theme-ui";
-import { Fosters } from "../api/fosters";
 import { PlusSquare } from "react-feather";
 import AnimalTable from "./AnimalTable";
-import PropTypes from "prop-types";
 import React from "react";
 import SpaceContext from "./SpaceContext";
 

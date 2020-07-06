@@ -1,15 +1,11 @@
-import React, { useState } from "react";
-import { Text, Link, Box, Flex, Button, Heading, Input } from "theme-ui";
-import PropTypes from "prop-types";
-import { withTracker } from "meteor/react-meteor-data";
-import { Animals } from "../api/animals";
-import { Fosters } from "../api/fosters";
-import dayjs from "dayjs";
-import WeightInput from "./WeightInput";
-import { toast } from "react-toastify";
-import { Meteor } from "meteor/meteor";
 import { ArrowLeft } from "react-feather";
+import { Meteor } from "meteor/meteor";
+import { Text, Link, Box, Flex, Button, Heading, Input } from "theme-ui";
+import { toast } from "react-toastify";
+import dayjs from "dayjs";
 import FosterContext from "./FosterContext";
+import React, { useState } from "react";
+import WeightInput from "./WeightInput";
 
 const WeightWizard = () => {
   const [index, setIndex] = useState(0);
@@ -72,10 +68,6 @@ const WeightWizard = () => {
       }}
     </FosterContext.Consumer>
   );
-};
-
-WeightWizard.propTypes = {
-  animals: PropTypes.array
 };
 
 export default WeightWizard;

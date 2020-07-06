@@ -1,6 +1,6 @@
-import React from "react";
-import { Flex, Box, Text } from "theme-ui";
+import { Flex, Text } from "theme-ui";
 import { IDEALWEIGHTS } from "../utils/constants";
+import React from "react";
 
 const Bar = props => {
   const width = (props.value / IDEALWEIGHTS.goal) * 100;

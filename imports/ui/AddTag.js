@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Select, Box, Link, Flex, Button } from "theme-ui";
-import { Plus } from "react-feather";
-import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { withTracker } from "meteor/react-meteor-data";
+import { Plus } from "react-feather";
+import { Select, Box, Link, Flex, Button } from "theme-ui";
 import { Tags } from "../api/tags";
 import { toast } from "react-toastify";
+import { withTracker } from "meteor/react-meteor-data";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 const AddTag = props => {
   const [value, setValue] = useState(null);

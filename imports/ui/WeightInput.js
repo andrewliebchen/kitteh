@@ -1,4 +1,4 @@
-import { Flex, Box, Input, Link } from "theme-ui";
+import { Flex, Input, Link } from "theme-ui";
 import { Plus } from "react-feather";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";

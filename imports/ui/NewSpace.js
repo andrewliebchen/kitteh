@@ -1,8 +1,6 @@
-import { Heading, Label, Box, Field, Button, Flex } from "theme-ui";
-import { Link } from "react-router-dom";
+import { Heading, Box, Field, Button, Flex } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { toast } from "react-toastify";
-import PropTypes from "prop-types";
 import React, { useState } from "react";
 
 const defaultArgs = {

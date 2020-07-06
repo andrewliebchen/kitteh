@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { Box, Flex, Text } from "theme-ui";
 import { X } from "react-feather";
+import PropTypes from "prop-types";
+import React from "react";
 
 const Tag = props => (
   <Box

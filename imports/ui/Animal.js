@@ -1,5 +1,6 @@
-import { Box, Heading, Flex, Text, Link, Select } from "theme-ui";
 import { ArrowLeft, Plus } from "react-feather";
+import { Box, Heading, Flex, Text, Link } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import AddTag from "./AddTag";
 import AnimalContext from "./AnimalContext";
 import BarRow from "./BarRow";
@@ -9,7 +10,6 @@ import React from "react";
 import RelativeTime from "dayjs/plugin/relativeTime";
 import Tag from "./Tag";
 import WeightInput from "./WeightInput";
-import { isReady } from "../utils/helpers";
 
 dayjs.extend(RelativeTime);
 

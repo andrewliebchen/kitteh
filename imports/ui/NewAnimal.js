@@ -1,13 +1,9 @@
-import { Animals } from "../api/animals";
-import { Fosters } from "../api/fosters";
-import { Heading, Box, Select, Button, Flex, Field } from "theme-ui";
+import { Heading, Box, Button, Flex, Field } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { lifestagesTypes, speciesTypes } from "../utils/types";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { toast } from "react-toastify";
-import { withTracker } from "meteor/react-meteor-data";
-import PropTypes from "prop-types";
 import React, { useState } from "react";
 import SpaceContext from "./SpaceContext";
 

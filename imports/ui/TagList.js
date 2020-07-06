@@ -1,8 +1,8 @@
-import React from "react";
-import Tag from "./Tag";
+import { Box, Flex, Heading, Link } from "theme-ui";
 import { PlusSquare } from "react-feather";
-import { Box, Text, Flex, Heading, Link } from "theme-ui";
+import React from "react";
 import SpaceContext from "./SpaceContext";
+import Tag from "./Tag";
 
 const TagList = () => (
   <SpaceContext.Consumer>

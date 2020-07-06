@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import dayjs from "dayjs";
-import Bar from "./Bar";
 import { Flex, Text } from "theme-ui";
+import Bar from "./Bar";
+import dayjs from "dayjs";
+import PropTypes from "prop-types";
+import React from "react";
 
 const BarRow = props => (
   <Flex sx={{ alignItems: "center" }}>

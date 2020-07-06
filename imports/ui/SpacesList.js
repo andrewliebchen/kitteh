@@ -1,4 +1,4 @@
-import { Box, Button, Text, Heading, Flex, Link } from "theme-ui";
+import { Box, Text, Heading, Flex, Link } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { PlusSquare } from "react-feather";
 import { Spaces } from "../api/spaces";
@@ -6,6 +6,9 @@ import { withTracker } from "meteor/react-meteor-data";
 import dayjs from "dayjs";
 import EditTextField from "./EditTextField";
 import React from "react";
+import RelativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(RelativeTime);
 
 const SpacesList = props => (
   <Box>

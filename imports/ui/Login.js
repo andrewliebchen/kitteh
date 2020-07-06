@@ -1,6 +1,6 @@
-import React from "react";
 import { Button, Flex } from "theme-ui";
 import { Meteor } from "meteor/meteor";
+import React from "react";
 
 const Login = props => (
   <Flex

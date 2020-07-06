@@ -5,19 +5,19 @@ import { ToastContainer } from "react-toastify";
 import Account from "./Account";
 import Animal from "./Animal";
 import AnimalList from "./AnimalList";
+import AnimalProvider from "./AnimalProvider";
 import Foster from "./Foster";
+import FosterProvider from "./FosterProvider";
 import Login from "./Login";
 import NewAnimal from "./NewAnimal";
 import NewFoster from "./NewFoster";
 import NewSpace from "./NewSpace";
+import NewTag from "./NewTag";
 import React from "react";
 import Space from "./Space";
+import SpaceProvider from "./SpaceProvider";
 import SpacesList from "./SpacesList";
 import WeightWizard from "./WeightWizard";
-import NewTag from "./NewTag";
-import SpaceProvider from "./SpaceProvider";
-import AnimalProvider from "./AnimalProvider";
-import FosterProvider from "./FosterProvider";
 
 const App = props => (
   <Box sx={{ padding: 3 }}>

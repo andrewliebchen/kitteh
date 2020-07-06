@@ -1,8 +1,6 @@
 import { ArrowLeft } from "react-feather";
 import { Box, Heading, Flex, Link } from "theme-ui";
 import { isReady } from "../utils/helpers";
-import { Spaces } from "../api/spaces";
-import { withTracker } from "meteor/react-meteor-data";
 import AnimalList from "./AnimalList";
 import EditTextField from "./EditTextField";
 import FosterList from "./FosterList";

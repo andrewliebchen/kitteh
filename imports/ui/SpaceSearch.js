@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Search, X } from "react-feather";
 import { Flex, Input, Link, Box } from "theme-ui";
+import { Search, X } from "react-feather";
+import React, { useState } from "react";
 
 const SpaceSearch = props => {
   const [visible, setVisible] = useState(false);

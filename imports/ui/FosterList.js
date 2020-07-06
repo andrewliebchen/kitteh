@@ -1,11 +1,7 @@
-import { Animals } from "../api/animals";
-import { Box, Text, Heading, Flex, Button, Link } from "theme-ui";
-import { Fosters } from "../api/fosters";
-import { PlusSquare } from "react-feather";
-import { Trash } from "react-feather";
+import { Box, Text, Heading, Flex, Link } from "theme-ui";
+import { PlusSquare, Trash } from "react-feather";
 import dayjs from "dayjs";
 import EditTextField from "./EditTextField";
-import PropTypes from "prop-types";
 import React from "react";
 import RelativeTime from "dayjs/plugin/relativeTime";
 import SpaceContext from "./SpaceContext";

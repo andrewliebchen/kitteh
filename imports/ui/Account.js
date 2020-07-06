@@ -1,9 +1,9 @@
-import React from "react";
-import { Avatar, Image, Flex, Button, Box } from "theme-ui";
+import { Avatar, Box } from "theme-ui";
+import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-import PropTypes from "prop-types";
-import { Link, Redirect } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
+import PropTypes from "prop-types";
+import React from "react";
 
 const Account = props => (
   <Box>
