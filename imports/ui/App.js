@@ -15,6 +15,9 @@ import Space from "./Space";
 import SpacesList from "./SpacesList";
 import WeightWizard from "./WeightWizard";
 import NewTag from "./NewTag";
+import SpaceProvider from "./SpaceProvider";
+import AnimalProvider from "./AnimalProvider";
+import FosterProvider from "./FosterProvider";
 
 const App = props => (
   <Box sx={{ padding: 3 }}>
@@ -31,38 +34,60 @@ const App = props => (
       </Flex>
       <Switch>
         <Route
-          path="/spaces/:spaceId/animals/:animalId"
-          render={routeProps => <Animal {...routeProps} />}
+          path="/spaces/:spaceId/animals/new"
+          render={routeProps => (
+            <SpaceProvider {...routeProps}>
+              <NewAnimal />
+            </SpaceProvider>
+          )}
         />
         <Route
-          path="/spaces/:spaceId/animals/new"
-          render={routeProps => <NewAnimal {...routeProps} />}
+          path="/spaces/:spaceId/animals/:animalId"
+          render={routeProps => (
+            <AnimalProvider {...routeProps}>
+              <Animal />
+            </AnimalProvider>
+          )}
         />
 
         <Route
+          path="/spaces/:spaceId/fosters/new"
+          render={routeProps => (
+            <SpaceProvider {...routeProps}>
+              <NewFoster />
+            </SpaceProvider>
+          )}
+        />
+        <Route
           path="/spaces/:spaceId/fosters/:fosterId/weights"
-          render={routeProps => <WeightWizard {...routeProps} />}
+          render={routeProps => (
+            <FosterProvider {...routeProps}>
+              <WeightWizard />
+            </FosterProvider>
+          )}
         />
         <Route
           path="/spaces/:spaceId/fosters/:fosterId"
-          render={routeProps => <Foster {...routeProps} />}
-        />
-        <Route
-          path="/spaces/:spaceId/fosters/new"
-          render={routeProps => <NewFoster {...routeProps} />}
-        />
-        <Route
-          path="/spaces/:spaceId/tags/new"
-          render={routeProps => <NewTag {...routeProps} />}
+          render={routeProps => (
+            <FosterProvider {...routeProps}>
+              <Foster />
+            </FosterProvider>
+          )}
         />
 
         <Route
-          path="/spaces/:spaceId"
-          render={routeProps => <Space {...routeProps} />}
+          path="/spaces/:spaceId/tags/new"
+          render={routeProps => <NewTag />}
         />
+
+        <Route path="/spaces/new" render={routeProps => <NewSpace />} />
         <Route
-          path="/spaces/new"
-          render={routeProps => <NewSpace {...routeProps} />}
+          path="/spaces/:spaceId"
+          render={routeProps => (
+            <SpaceProvider {...routeProps}>
+              <Space />
+            </SpaceProvider>
+          )}
         />
 
         <Route path="/login" component={Login} />

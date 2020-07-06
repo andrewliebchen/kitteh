@@ -9,7 +9,7 @@ const defaultArgs = {
   name: ""
 };
 
-const NewFoster = props => {
+const NewSpace = props => {
   const [args, setArgs] = useState(defaultArgs);
   return (
     <Box>
@@ -37,4 +37,4 @@ const NewFoster = props => {
   );
 };
 
-export default NewFoster;
+export default NewSpace;

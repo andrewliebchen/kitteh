@@ -1,56 +1,54 @@
+import { ArrowLeft } from "react-feather";
 import { Box, Heading, Flex, Link } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import { Spaces } from "../api/spaces";
 import { withTracker } from "meteor/react-meteor-data";
-import { ArrowLeft } from "react-feather";
 import AnimalList from "./AnimalList";
 import EditTextField from "./EditTextField";
 import FosterList from "./FosterList";
 import React from "react";
+import SpaceContext from "./SpaceContext";
 import SpaceSearch from "./SpaceSearch";
 import TagList from "./TagList";
-import SpaceProvider from "./SpaceProvider";
-import SpaceContext from "./SpaceContext";
 
-const Space = props => (
-  <SpaceProvider {...props}>
-    <SpaceContext.Consumer>
-      {props =>
-        typeof props.space !== "undefined" && (
-          <Box>
-            <Flex
-              sx={{
-                alignItems: "center",
-                justifyContent: "space-between",
-                mb: 3
-              }}
-            >
-              <Flex sx={{ alignItems: "center" }}>
-                <Link href="/">
-                  <ArrowLeft />
-                </Link>
-                <Heading sx={{ marginLeft: 2 }}>
-                  <EditTextField
-                    _id={props.space._id}
-                    value="name"
-                    label={props.space.name}
-                    method="spaces.update"
-                  />
-                </Heading>
-              </Flex>
-              <SpaceSearch />
+const Space = () => (
+  <SpaceContext.Consumer>
+    {props =>
+      isReady(props.space) && (
+        <Box>
+          <Flex
+            sx={{
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 3
+            }}
+          >
+            <Flex sx={{ alignItems: "center" }}>
+              <Link href="/">
+                <ArrowLeft />
+              </Link>
+              <Heading sx={{ marginLeft: 2 }}>
+                <EditTextField
+                  _id={props.space._id}
+                  value="name"
+                  label={props.space.name}
+                  method="spaces.update"
+                />
+              </Heading>
             </Flex>
-            <Box sx={{ mb: 3 }}>
-              <AnimalList {...props} />
-            </Box>
-            <Box sx={{ mb: 3 }}>
-              <FosterList {...props} />
-            </Box>
-            <TagList {...props} />
+            <SpaceSearch />
+          </Flex>
+          <Box sx={{ mb: 3 }}>
+            <AnimalList />
           </Box>
-        )
-      }
-    </SpaceContext.Consumer>
-  </SpaceProvider>
+          <Box sx={{ mb: 3 }}>
+            <FosterList />
+          </Box>
+          <TagList />
+        </Box>
+      )
+    }
+  </SpaceContext.Consumer>
 );
 
 export default Space;
