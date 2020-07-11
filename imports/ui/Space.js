@@ -18,7 +18,9 @@ const Space = () => (
             sx={{
               alignItems: "center",
               justifyContent: "space-between",
-              mb: 3
+              mb: 3,
+              zIndex: "999",
+              position: "relative"
             }}
           >
             <Flex sx={{ alignItems: "center" }}>

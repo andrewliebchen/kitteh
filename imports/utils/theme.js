@@ -23,6 +23,8 @@ export default {
     secondary: "#30c",
     muted: "#f6f6f6"
   },
+  shadows: ["0 4px 10px rgba(0, 0, 0, 0.2)"],
+  zIndices: [0, 1],
   styles: {
     root: {
       fontFamily: "body",

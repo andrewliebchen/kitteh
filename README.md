@@ -30,3 +30,6 @@ Tracking your foster litters.
 - Improve visual design
 - ~~Fix routes~~
 - ~~Animal weights graph on foster page~~
+- Notes on the animal
+- Animal and foster photos
+- Out of bounds weight reporting
