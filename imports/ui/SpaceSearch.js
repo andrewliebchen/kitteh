@@ -46,18 +46,19 @@ const SpaceSearch = () => {
             {results.length > 0 && (
               <Card
                 sx={{
-                  position: "absolute",
-                  top: "100%",
-                  boxShadow: 0,
-                  width: "100%",
-                  mt: 1,
                   bg: "white",
+                  boxShadow: 0,
+                  mt: 1,
+                  position: "absolute",
+                  py: 1,
+                  top: "100%",
+                  width: "100%",
                   zIndex: 1
                 }}
               >
                 {results.map(result => (
                   <Flex key={result._id}>
-                    <Box sx={{ p: 3 }}>
+                    <Box sx={{ px: 3, py: 2 }}>
                       <Link
                         href={`/spaces/${props.match.params.spaceId}/${result.type}s/${result._id}`}
                       >

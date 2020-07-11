@@ -1,4 +1,4 @@
-import { Heading, Box, Button, Flex, Field } from "theme-ui";
+import { Heading, Box, Button, Flex, Field, Select } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { lifestagesTypes, speciesTypes } from "../utils/types";
 import { Link } from "react-router-dom";
