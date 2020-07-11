@@ -4,13 +4,19 @@ import React, { useState } from "react";
 import SpaceContext from "./SpaceContext";
 
 const SpaceSearch = () => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [results, setResults] = useState([]);
 
   return (
     <SpaceContext.Consumer>
       {props => {
-        const elements = props.animals.concat(props.fosters);
+        let elements = [];
+        props.animals.map(animal =>
+          elements.push({ type: "animal", ...animal })
+        );
+        props.fosters.map(foster =>
+          elements.push({ type: "foster", ...foster })
+        );
 
         return visible ? (
           <Box sx={{ width: 400, position: "relative" }}>
@@ -40,16 +46,26 @@ const SpaceSearch = () => {
             {results.length > 0 && (
               <Card
                 sx={{
-                  p: 3,
                   position: "absolute",
                   top: "100%",
                   boxShadow: 0,
                   width: "100%",
-                  mt: 1
+                  mt: 1,
+                  bg: "white",
+                  zIndex: 1
                 }}
               >
                 {results.map(result => (
-                  <Flex key={result._id}>{result.name}</Flex>
+                  <Flex key={result._id}>
+                    <Box sx={{ p: 3 }}>
+                      <Link
+                        href={`/spaces/${props.match.params.spaceId}/${result.type}s/${result._id}`}
+                      >
+                        <b>{result.name}</b>
+                      </Link>
+                      <Text>{result.type}</Text>
+                    </Box>
+                  </Flex>
                 ))}
               </Card>
             )}
