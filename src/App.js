@@ -1,13 +1,9 @@
-import { getAllAnimals, deleteAnimal, updateAnimal } from "./api";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import AppContext from "./AppContext";
 import NewAnimal from "./NewAnimal";
 
-function App() {
-  const [animals, setAnimals] = useState([]);
-
-  useEffect(() => {
-    getAllAnimals.then((res) => setAnimals(res));
-  }, []);
+const App = () => {
+  const { animals } = useContext(AppContext);
 
   return (
     <div>
@@ -15,9 +11,9 @@ function App() {
       {animals.map((animal) => (
         <div key={animal.ref.id}>{animal.data.name}</div>
       ))}
-      <NewAnimal animals={animals} setAnimals={setAnimals} />
+      <NewAnimal />
     </div>
   );
-}
+};
 
 export default App;

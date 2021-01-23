@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { createAnimal } from "./api";
+import { useState, useContext } from "react";
+import AppContext from "./AppContext";
 
-const NewAnimal = ({ animals, setAnimals }) => {
+const NewAnimal = () => {
+  const { animals, setAnimals, createAnimal } = useContext(AppContext);
   const [value, setValue] = useState("");
 
   return (
