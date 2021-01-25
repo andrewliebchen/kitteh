@@ -1,6 +1,7 @@
-import AppContext from "./AppContext";
+import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import Airtable from "airtable";
+import AppContext from "./AppContext";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -31,9 +32,14 @@ const AppProvider = (props) => {
       };
     });
 
-    console.log(payload);
-
-    Airtable.base("app0AK6Hi7kU1sG4P")("Weights").create(payload);
+    Airtable.base("app0AK6Hi7kU1sG4P")("Weights").create(
+      payload,
+      (error, records) => {
+        error
+          ? toast.error("Something went wrong")
+          : toast.success("Weights added");
+      }
+    );
   };
 
   return (

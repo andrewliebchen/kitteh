@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import { useContext, useState } from "react";
 import AppContext from "./AppContext";
 
@@ -32,6 +33,7 @@ const App = () => {
         ))}
         <input type="submit" value="Submit" />
       </form>
+      <ToastContainer hideProgressBar={true} />
     </div>
   );
 };
