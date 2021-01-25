@@ -1,7 +1,8 @@
 import { toast } from "react-toastify";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Airtable from "airtable";
 import AppContext from "./AppContext";
+import { upperCaseFirst } from "upper-case-first";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -9,11 +10,12 @@ Airtable.configure({
 });
 
 const AppProvider = (props) => {
+  const [fosterName, setFosterName] = useState("");
   const [animals, setAnimals] = useState([]);
 
-  useEffect(() => {
+  const getAnimals = (fosterName) =>
     Airtable.base("app0AK6Hi7kU1sG4P")("Animals")
-      .select({ filterByFormula: `{Foster} = "Marta"` })
+      .select({ filterByFormula: `{Foster} = "${upperCaseFirst(fosterName)}"` })
       .eachPage(
         function page(records, fetchNextPage) {
           setAnimals(records);
@@ -23,7 +25,6 @@ const AppProvider = (props) => {
           err && console.error(err);
         }
       );
-  }, []);
 
   const createWeight = (weights) => {
     const payload = weights.map((weight) => {
@@ -46,8 +47,11 @@ const AppProvider = (props) => {
     <AppContext.Provider
       value={{
         animals,
+        getAnimals,
         createWeight,
         setAnimals,
+        fosterName,
+        setFosterName,
         ...props,
       }}
     >

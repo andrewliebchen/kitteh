@@ -1,41 +1,17 @@
-import { ToastContainer } from "react-toastify";
-import { useContext, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from "react-router-dom";
+import AnimalList from "./AnimalList";
 import AppContext from "./AppContext";
+import { useContext, useEffect } from "react";
 
-const App = () => {
-  const { animals, createWeight } = useContext(AppContext);
-  const [weights, setWeights] = useState([]);
-
-  return (
-    <div>
-      <h1>Kitteh</h1>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          createWeight(weights);
-        }}
-      >
-        {animals.map((animal) => (
-          <div key={animal.id}>
-            {animal.fields.Name}
-            <input
-              type="number"
-              onChange={(event) =>
-                setWeights(
-                  weights.concat({
-                    Animal: [animal.id],
-                    Weight: parseInt(event.target.value),
-                  })
-                )
-              }
-            />
-          </div>
-        ))}
-        <input type="submit" value="Submit" />
-      </form>
-      <ToastContainer hideProgressBar={true} />
-    </div>
-  );
-};
+const App = () => (
+  <Router>
+    <Route path="/:fosterName" component={AnimalList} />
+  </Router>
+);
 
 export default App;
