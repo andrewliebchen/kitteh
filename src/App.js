@@ -1,17 +1,37 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AppContext from "./AppContext";
-import NewAnimal from "./NewAnimal";
 
 const App = () => {
-  const { animals } = useContext(AppContext);
+  const { animals, createWeight } = useContext(AppContext);
+  const [weights, setWeights] = useState([]);
 
   return (
     <div>
       <h1>Kitteh</h1>
-      {animals.map((animal) => (
-        <div key={animal.ref.id}>{animal.data.name}</div>
-      ))}
-      <NewAnimal />
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          createWeight(weights);
+        }}
+      >
+        {animals.map((animal) => (
+          <div key={animal.id}>
+            {animal.fields.Name}
+            <input
+              type="number"
+              onChange={(event) =>
+                setWeights(
+                  weights.concat({
+                    Animal: [animal.id],
+                    Weight: parseInt(event.target.value),
+                  })
+                )
+              }
+            />
+          </div>
+        ))}
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   );
 };
