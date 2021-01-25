@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import Airtable from "airtable";
 import AppContext from "./AppContext";
-import { upperCaseFirst } from "upper-case-first";
+import { titleCase } from "title-case";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -15,7 +15,11 @@ const AppProvider = (props) => {
 
   const getAnimals = (fosterName) =>
     Airtable.base("app0AK6Hi7kU1sG4P")("Animals")
-      .select({ filterByFormula: `{Foster} = "${upperCaseFirst(fosterName)}"` })
+      .select({
+        filterByFormula: `{Foster} = "${titleCase(
+          fosterName.replace("-", " ")
+        )}"`,
+      })
       .eachPage(
         function page(records, fetchNextPage) {
           setAnimals(records);
