@@ -4,12 +4,11 @@ import AppContext from "./AppContext";
 
 const AnimalList = (props) => {
   const {
-    animals,
     createWeight,
     AirtableBase,
-    setAnimals,
     getWeights,
   } = useContext(AppContext);
+  const [animals, setAnimals] = useState([]);
   const [weights, setWeights] = useState([]);
 
   useEffect(

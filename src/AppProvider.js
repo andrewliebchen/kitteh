@@ -9,7 +9,6 @@ Airtable.configure({
 });
 
 const AppProvider = (props) => {
-  const [animals, setAnimals] = useState([]);
 
   const AirtableBase = Airtable.base("app0AK6Hi7kU1sG4P");
 
@@ -47,10 +46,8 @@ const AppProvider = (props) => {
       value={{
         ...props,
         AirtableBase,
-        animals,
         createWeight,
         getWeights,
-        setAnimals,
       }}
     >
       {props.children}
