@@ -1,19 +1,32 @@
 import { useContext, useState, useEffect } from "react";
 import AppContext from "./AppContext";
+import { titleCase } from "title-case";
 
-export const useAirtableData = (table, query) => {
+export const useAnimals = fosterName => {
   const { AirtableBase } = useContext(AppContext);
-  const [data, setData] = useState([]);
+  const [animals, setAnimals] = useState([]);
+  const [weights, setWeights] = useState([]);
 
   useEffect(() => {
+    const query = {
+      filterByFormula: `{Foster} = "${titleCase(fosterName.replace("-", " "))}"`
+    };
+
+    async function fetchWeights() {
+      AirtableBase("Weights")
+        .select(query)
+        .eachPage(function page(records, fetchNextPage) {
+          setWeights(records);
+          fetchNextPage();
+        });
+    }
+
     async function fetchAnimals() {
-      AirtableBase(table)
-        .select({
-          filterByFormula: query
-        })
+      AirtableBase("Animals")
+        .select(query)
         .eachPage(
           function page(records, fetchNextPage) {
-            setData(records);
+            setAnimals(records);
             fetchNextPage();
           },
           function done(err) {
@@ -22,10 +35,11 @@ export const useAirtableData = (table, query) => {
         );
     }
 
+    fetchWeights();
     fetchAnimals();
-  }, [AirtableBase, table, query]);
+  }, [AirtableBase, fosterName]);
 
-  return data;
+  return { animals, weights };
 };
 
 // for weights `{ID} = "${animalId}"`
