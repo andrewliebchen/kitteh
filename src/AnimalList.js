@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import { useAnimals } from "./hooks";
 import { useContext, useState } from "react";
 import AppContext from "./AppContext";
-import TimeAgo from "timeago-react";
+import dayjs from "dayjs";
 
 const AnimalList = props => {
   const { createWeights } = useContext(AppContext);
@@ -24,11 +25,13 @@ const AnimalList = props => {
 
           return (
             <div key={animal.id}>
-              <div>{animal.fields.Name}</div>
+              <div>
+                <Link to={`/animals/${animal.id}`}>{animal.fields.Name}</Link>
+              </div>
               {lastWeight && (
                 <small>
                   Last weight {lastWeight.fields.Weight} recorded at{" "}
-                  <TimeAgo datetime={lastWeight.fields.Created} />
+                  {dayjs(lastWeight.fields.Created).fromNow()}
                 </small>
               )}
               <div>

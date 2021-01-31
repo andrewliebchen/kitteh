@@ -1,11 +1,15 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Foster from "./Foster";
+import Animal from "./Animal";
 
 const App = () => (
   <div>
     <Router>
-      <Route path="/:fosterName" component={Foster} />
+      <Switch>
+        <Route path="/animals/:animalId" component={Animal} />
+        <Route path="/:fosterName" component={Foster} />
+      </Switch>
     </Router>
     <ToastContainer hideProgressBar={true} />
   </div>
