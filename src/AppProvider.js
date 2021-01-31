@@ -5,17 +5,16 @@ import AppContext from "./AppContext";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
-  apiKey: process.env.REACT_APP_AIRTABLE_KEY,
+  apiKey: process.env.REACT_APP_AIRTABLE_KEY
 });
 
-const AppProvider = (props) => {
-
+const AppProvider = props => {
   const AirtableBase = Airtable.base("app0AK6Hi7kU1sG4P");
 
-  const createWeight = (weights) => {
-    const payload = weights.map((weight) => {
+  const createWeights = weights => {
+    const payload = weights.map(weight => {
       return {
-        fields: weight,
+        fields: weight
       };
     });
 
@@ -26,28 +25,12 @@ const AppProvider = (props) => {
     });
   };
 
-  const getWeights = (animalId) =>
-    AirtableBase("Weights")
-      .select({
-        filterByFormula: `{ID} = "${animalId}"`,
-      })
-      .eachPage(
-        function page(records, fetchNextPage) {
-          return records;
-          fetchNextPage();
-        },
-        function done(err) {
-          err && console.error(err);
-        }
-      );
-
   return (
     <AppContext.Provider
       value={{
         ...props,
         AirtableBase,
-        createWeight,
-        getWeights,
+        createWeights
       }}
     >
       {props.children}

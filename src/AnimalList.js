@@ -1,55 +1,36 @@
-import { titleCase } from "title-case";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import AppContext from "./AppContext";
+import { useAirtableData } from "./hooks";
+import { titleCase } from "title-case";
 
-const AnimalList = (props) => {
-  const {
-    createWeight,
-    AirtableBase,
-    getWeights,
-  } = useContext(AppContext);
-  const [animals, setAnimals] = useState([]);
-  const [weights, setWeights] = useState([]);
-
-  useEffect(
-    () =>
-      AirtableBase("Animals")
-        .select({
-          filterByFormula: `{Foster} = "${titleCase(
-            props.fosterName.replace("-", " ")
-          )}"`,
-        })
-        .eachPage(
-          function page(records, fetchNextPage) {
-            setAnimals(records);
-            fetchNextPage();
-          },
-          function done(err) {
-            err && console.error(err);
-          }
-        ),
-    []
+const AnimalList = props => {
+  const { createWeights } = useContext(AppContext);
+  const animals = useAirtableData(
+    "Animals",
+    `{Foster} = "${titleCase(props.fosterName.replace("-", " "))}"`
   );
+  const [weightsInput, setWeightsInput] = useState([]);
 
   return (
     <div>
       <form
-        onSubmit={(event) => {
+        onSubmit={event => {
           event.preventDefault();
-          createWeight(weights);
+          createWeights(weightsInput);
+          setWeightsInput([]);
         }}
       >
-        {animals.map((animal) => {
+        {animals.map(animal => {
           return (
             <div key={animal.id}>
               {animal.fields.Name}
               <input
                 type="number"
-                onChange={(event) =>
-                  setWeights(
-                    weights.concat({
+                onChange={event =>
+                  setWeightsInput(
+                    weightsInput.concat({
                       Animal: [animal.id],
-                      Weight: parseInt(event.target.value),
+                      Weight: parseInt(event.target.value)
                     })
                   )
                 }
