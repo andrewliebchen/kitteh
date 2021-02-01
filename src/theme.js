@@ -24,6 +24,12 @@ export default {
     muted: "#f6f6f6"
   },
   sizes: {},
+  buttons: {
+    primary: {
+      fontWeight: "bold",
+      flexShrink: 0
+    }
+  },
   styles: {
     root: {
       fontFamily: "body",

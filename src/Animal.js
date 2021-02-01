@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { useContext, useState } from "react";
 import AppContext from "./AppContext";
+import TimeSelect from "./TimeSelect";
 
 const columnWidths = ["15%", "10%", "75%"];
 
@@ -16,7 +17,7 @@ const Animal = props => {
   return (
     Object.keys(animal).length > 0 && (
       <Box p={3}>
-        <Heading>{animal.fields.Name}</Heading>
+        <Heading mb={3}>{animal.fields.Name}</Heading>
         <Flex
           as="form"
           sx={{ alignItems: "center", gap: 3, mb: 3 }}
@@ -33,6 +34,8 @@ const Animal = props => {
             placeholder={`Add a new weight for ${animal.fields.Name}`}
             onChange={event => setWeight(event.target.value)}
           />
+          <TimeSelect />
+          <Button>Send</Button>
         </Flex>
         <Box>
           <Flex sx={{ gap: 3, textDecoration: "underline" }}>
@@ -44,7 +47,7 @@ const Animal = props => {
           {weights.map(weight => (
             <Flex key={weight.id} sx={{ gap: 3, alignItems: "center" }}>
               <Text sx={{ width: columnWidths[0] }}>
-                {dayjs(weight.fields.Created).format("h:mma [on] MMM D")}
+                {dayjs(weight.fields.Recorded).format("h:mma [on] MMM D")}
               </Text>
               <Text
                 sx={{

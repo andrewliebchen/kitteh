@@ -8,8 +8,8 @@ import { Box, Button, Flex, Input, Text } from "theme-ui";
 const AnimalList = props => {
   const { createWeights } = useContext(AppContext);
   const { animals, weights } = useAnimals(props.fosterName);
-
   const [weightsInput, setWeightsInput] = useState([]);
+
   useEffect(
     () =>
       animals.length > 0 &&
@@ -57,7 +57,7 @@ const AnimalList = props => {
                 {lastWeight && (
                   <Text>
                     Last weight <b>{lastWeight.fields.Weight}</b> recorded at{" "}
-                    {dayjs(lastWeight.fields.Created).format(
+                    {dayjs(lastWeight.fields.Recorded).format(
                       "h:mma [on] MMM D"
                     )}
                   </Text>
