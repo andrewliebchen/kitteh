@@ -51,7 +51,10 @@ export const useAnimal = animalId => {
       AirtableBase("Animals").find(animalId, (error, record) => {
         setAnimal(record);
         AirtableBase("Weights")
-          .select({ filterByFormula: `{Animal} = "${record.fields.Name}"` })
+          .select({
+            filterByFormula: `{Animal} = "${record.fields.Name}"`,
+            sort: [{ field: "Created", direction: "desc" }]
+          })
           .eachPage(function page(records, fetchNextPage) {
             setWeights(records);
             fetchNextPage();
