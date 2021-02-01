@@ -22,9 +22,7 @@ const Animal = props => {
               <tr key={weight.id}>
                 <td>{weight.fields.Weight}</td>
                 <td>
-                  {dayjs(weight.fields.Created).format(
-                    "dddd MMM M [at] h:mm a"
-                  )}
+                  {dayjs(weight.fields.Created).format("h:mma [on] MMM D")}
                 </td>
               </tr>
             ))}
