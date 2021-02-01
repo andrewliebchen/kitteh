@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useAnimal } from "./hooks";
 import dayjs from "dayjs";
+import { Progress } from "theme-ui";
 
 const Animal = props => {
   const { animalId } = useParams();
@@ -23,6 +24,9 @@ const Animal = props => {
                 <td>{weight.fields.Weight}</td>
                 <td>
                   {dayjs(weight.fields.Created).format("h:mma [on] MMM D")}
+                </td>
+                <td width={500}>
+                  <Progress max={10} value={weight.fields.Weight} />
                 </td>
               </tr>
             ))}

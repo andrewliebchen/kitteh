@@ -5,11 +5,15 @@ import AppProvider from "./AppProvider";
 import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider } from "theme-ui";
+import theme from "./theme";
 
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")
