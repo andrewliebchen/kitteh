@@ -1,11 +1,15 @@
-import { Box, Flex, Heading, Progress, Text } from "theme-ui";
+import { Box, Button, Input, Flex, Heading, Progress, Text } from "theme-ui";
 import { useAnimal } from "./hooks";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import { useContext, useState } from "react";
+import AppContext from "./AppContext";
 
 const columnWidths = ["15%", "10%", "75%"];
 
 const Animal = props => {
+  const { createWeight } = useContext(AppContext);
+  const [weight, setWeight] = useState("");
   const { animalId } = useParams();
   const { animal, weights } = useAnimal(animalId);
 
@@ -13,6 +17,23 @@ const Animal = props => {
     Object.keys(animal).length > 0 && (
       <Box p={3}>
         <Heading>{animal.fields.Name}</Heading>
+        <Flex
+          as="form"
+          sx={{ alignItems: "center", gap: 3, mb: 3 }}
+          onSubmit={event => {
+            event.preventDefault();
+            createWeight(weight, animal.id);
+            setWeight();
+          }}
+        >
+          <Input
+            type="number"
+            step={0.01}
+            defaultValue={weight}
+            placeholder={`Add a new weight for ${animal.fields.Name}`}
+            onChange={event => setWeight(event.target.value)}
+          />
+        </Flex>
         <Box>
           <Flex sx={{ gap: 3, textDecoration: "underline" }}>
             <Text sx={{ width: columnWidths[0] }}>Date</Text>

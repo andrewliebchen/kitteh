@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAnimals } from "./hooks";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import AppContext from "./AppContext";
 import dayjs from "dayjs";
 import { Box, Button, Flex, Input, Text } from "theme-ui";
@@ -8,7 +8,18 @@ import { Box, Button, Flex, Input, Text } from "theme-ui";
 const AnimalList = props => {
   const { createWeights } = useContext(AppContext);
   const { animals, weights } = useAnimals(props.fosterName);
+
   const [weightsInput, setWeightsInput] = useState([]);
+  useEffect(
+    () =>
+      animals.length > 0 &&
+      weightsInput.length === 0 &&
+      setWeightsInput(
+        animals.map(animal => {
+          return { Animal: [animal.id], Weight: false };
+        })
+      )
+  );
 
   return (
     <Box>
@@ -20,14 +31,18 @@ const AnimalList = props => {
           setWeightsInput([]);
         }}
       >
-        {animals.map(animal => {
+        {weightsInput.map((weightInput, i) => {
           const lastWeight = weights.filter(
-            weight => animal.id === weight.fields.Animal[0]
+            weight => weightInput.Animal[0] === weight.fields.Animal[0]
           )[0];
+
+          const animal = animals.find(
+            animal => animal.id === weightInput.Animal[0]
+          );
 
           return (
             <Flex
-              key={animal.id}
+              key={weightInput.Animal}
               sx={{
                 gap: 2,
                 alignItems: "center",
@@ -36,12 +51,12 @@ const AnimalList = props => {
               }}
             >
               <Flex sx={{ justifyContent: "space-between", width: "100%" }}>
-                <Link to={`/animals/${animal.id}`}>
+                <Link to={`/animals/${weightInput.Animal}`}>
                   <Text sx={{ fontWeight: "bold" }}>{animal.fields.Name}</Text>
                 </Link>
                 {lastWeight && (
                   <Text>
-                    Last weight {lastWeight.fields.Weight} recorded at{" "}
+                    Last weight <b>{lastWeight.fields.Weight}</b> recorded at{" "}
                     {dayjs(lastWeight.fields.Created).format(
                       "h:mma [on] MMM D"
                     )}
@@ -51,19 +66,20 @@ const AnimalList = props => {
               <Input
                 type="number"
                 placeholder={`Add a new weight for ${animal.fields.Name}`}
-                onChange={event =>
-                  setWeightsInput(
-                    weightsInput.concat({
-                      Animal: [animal.id],
-                      Weight: parseInt(event.target.value)
-                    })
-                  )
-                }
+                onChange={event => {
+                  weightsInput[i].Weight = parseInt(event.target.value);
+                  setWeightsInput(weightsInput);
+                }}
               />
             </Flex>
           );
         })}
-        <Button disabled={weightsInput.length === 0}>Save</Button>
+        <Button
+          as="input"
+          type="submit"
+          disabled={weightsInput.length === 0}
+          value="Save"
+        />
       </Box>
     </Box>
   );

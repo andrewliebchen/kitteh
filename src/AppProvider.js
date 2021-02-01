@@ -24,12 +24,26 @@ const AppProvider = props => {
     });
   };
 
+  const createWeight = (weight, id) => {
+    const payload = {
+      fields: weight,
+      Animal: id
+    };
+
+    AirtableBase("Weights").create(payload, (error, records) => {
+      error
+        ? toast.error("Something went wrong")
+        : toast.success("Weights added");
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
         ...props,
         AirtableBase,
-        createWeights
+        createWeights,
+        createWeight
       }}
     >
       {props.children}
