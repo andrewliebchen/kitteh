@@ -3,6 +3,7 @@ import { useAnimals } from "./hooks";
 import { useContext, useState } from "react";
 import AppContext from "./AppContext";
 import dayjs from "dayjs";
+import { Box, Button, Flex, Input, Text } from "theme-ui";
 
 const AnimalList = props => {
   const { createWeights } = useContext(AppContext);
@@ -10,8 +11,9 @@ const AnimalList = props => {
   const [weightsInput, setWeightsInput] = useState([]);
 
   return (
-    <div>
-      <form
+    <Box>
+      <Box
+        as="form"
         onSubmit={event => {
           event.preventDefault();
           createWeights(weightsInput);
@@ -24,35 +26,46 @@ const AnimalList = props => {
           )[0];
 
           return (
-            <div key={animal.id}>
-              <div>
-                <Link to={`/animals/${animal.id}`}>{animal.fields.Name}</Link>
-              </div>
-              {lastWeight && (
-                <small>
-                  Last weight {lastWeight.fields.Weight} recorded at{" "}
-                  {dayjs(lastWeight.fields.Created).format("h:mma [on] MMM D")}
-                </small>
-              )}
-              <div>
-                <input
-                  type="number"
-                  onChange={event =>
-                    setWeightsInput(
-                      weightsInput.concat({
-                        Animal: [animal.id],
-                        Weight: parseInt(event.target.value)
-                      })
-                    )
-                  }
-                />
-              </div>
-            </div>
+            <Flex
+              key={animal.id}
+              sx={{
+                gap: 2,
+                alignItems: "center",
+                flexDirection: "column",
+                pb: 3
+              }}
+            >
+              <Flex sx={{ justifyContent: "space-between", width: "100%" }}>
+                <Link to={`/animals/${animal.id}`}>
+                  <Text sx={{ fontWeight: "bold" }}>{animal.fields.Name}</Text>
+                </Link>
+                {lastWeight && (
+                  <Text>
+                    Last weight {lastWeight.fields.Weight} recorded at{" "}
+                    {dayjs(lastWeight.fields.Created).format(
+                      "h:mma [on] MMM D"
+                    )}
+                  </Text>
+                )}
+              </Flex>
+              <Input
+                type="number"
+                placeholder={`Add a new weight for ${animal.fields.Name}`}
+                onChange={event =>
+                  setWeightsInput(
+                    weightsInput.concat({
+                      Animal: [animal.id],
+                      Weight: parseInt(event.target.value)
+                    })
+                  )
+                }
+              />
+            </Flex>
           );
         })}
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
+        <Button disabled={weightsInput.length === 0}>Save</Button>
+      </Box>
+    </Box>
   );
 };
 

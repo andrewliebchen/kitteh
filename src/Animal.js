@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
-import { useAnimal } from "./hooks";
-import dayjs from "dayjs";
 import { Box, Flex, Heading, Progress, Text } from "theme-ui";
+import { useAnimal } from "./hooks";
+import { useParams } from "react-router-dom";
+import dayjs from "dayjs";
 
 const columnWidths = ["15%", "10%", "75%"];
 
