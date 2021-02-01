@@ -31,7 +31,7 @@ const AnimalList = props => {
               {lastWeight && (
                 <small>
                   Last weight {lastWeight.fields.Weight} recorded at{" "}
-                  {dayjs(lastWeight.fields.Created).fromNow()}
+                  {dayjs(lastWeight.fields.Created).format("h:mma [on] MMM D")}
                 </small>
               )}
               <div>

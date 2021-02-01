@@ -1,16 +1,17 @@
 import AnimalList from "./AnimalList";
 import { useParams } from "react-router-dom";
 import { titleCase } from "title-case";
+import { Box, Heading } from "theme-ui";
 
 const Foster = props => {
   const { fosterName } = useParams();
   const formattedName = titleCase(fosterName.replace("-", " "));
 
   return (
-    <div>
-      <h1>{formattedName}</h1>
+    <Box p={3}>
+      <Heading>{formattedName}</Heading>
       <AnimalList fosterName={formattedName} />
-    </div>
+    </Box>
   );
 };
 

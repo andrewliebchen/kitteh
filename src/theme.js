@@ -23,6 +23,7 @@ export default {
     secondary: "#30c",
     muted: "#f6f6f6"
   },
+  sizes: {},
   styles: {
     root: {
       fontFamily: "body",
