@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import AppContext from "./AppContext";
-import { useLocation } from "react-router-dom";
 
 export const useAnimals = fosterName => {
   const { AirtableBase } = useContext(AppContext);

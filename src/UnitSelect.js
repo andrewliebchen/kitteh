@@ -1,7 +1,7 @@
 import { Link } from "theme-ui";
-import { useContext, useEffect } from "react";
-import AppContext from "./AppContext";
 import { units } from "./helpers";
+import { useContext } from "react";
+import AppContext from "./AppContext";
 
 const UnitSelect = props => {
   const { unit, setUnit } = useContext(AppContext);

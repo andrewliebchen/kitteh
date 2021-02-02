@@ -1,10 +1,11 @@
 import { Box, Button, Input, Flex, Heading, Progress, Text } from "theme-ui";
 import { useAnimal } from "./hooks";
-import { useParams } from "react-router-dom";
-import dayjs from "dayjs";
 import { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
+import dayjs from "dayjs";
 import TimeSelect from "./TimeSelect";
+import Weight from "./Weight";
 
 const columnWidths = ["15%", "10%", "75%"];
 
@@ -56,7 +57,7 @@ const Animal = props => {
                   fontWeight: "bold"
                 }}
               >
-                {weight.fields.Weight}
+                <Weight value={weight.fields.Weight} />
               </Text>
               <Progress
                 max={10}

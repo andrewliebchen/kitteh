@@ -1,9 +1,10 @@
+import { Box, Button, Flex, Input, Text } from "theme-ui";
 import { Link } from "react-router-dom";
 import { useAnimals } from "./hooks";
 import { useContext, useState, useEffect } from "react";
 import AppContext from "./AppContext";
 import dayjs from "dayjs";
-import { Box, Button, Flex, Input, Text } from "theme-ui";
+import Weight from "./Weight";
 
 const AnimalList = props => {
   const { createWeights } = useContext(AppContext);
@@ -56,7 +57,8 @@ const AnimalList = props => {
                 </Link>
                 {lastWeight && (
                   <Text>
-                    Last weight <b>{lastWeight.fields.Weight}</b> recorded at{" "}
+                    Last weight <Weight value={lastWeight.fields.Weight} />{" "}
+                    recorded at{" "}
                     {dayjs(lastWeight.fields.Recorded).format(
                       "h:mma [on] MMM D"
                     )}

@@ -2,7 +2,7 @@ export const units = {
   grams: {
     label: "Grams",
     short: "g",
-    conversion: 28.35 // ounces to grams
+    conversion: 1
   },
   ounces: {
     label: "Ounces",

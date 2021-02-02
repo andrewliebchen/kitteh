@@ -1,10 +1,9 @@
 import { Box, Input, Select } from "theme-ui";
 import { useContext, useState } from "react";
 import AppContext from "./AppContext";
-import dayjs from "dayjs";
 
 const TimeSelect = () => {
-  const { timestamp, setTimestamp } = useContext(AppContext);
+  const { setTimestamp } = useContext(AppContext);
   const [type, setType] = useState("now");
 
   return (

@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 import Airtable from "airtable";
 import AppContext from "./AppContext";
 import { useState } from "react";
-import { units } from "./helpers";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",

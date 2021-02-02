@@ -4,13 +4,10 @@ import { titleCase } from "title-case";
 import { Box, Flex, Heading } from "theme-ui";
 import TimeSelect from "./TimeSelect";
 import UnitSelect from "./UnitSelect";
-import { useEffect } from "react";
-import { useFoster } from "./hooks";
 
 const Foster = props => {
   const { fosterName } = useParams();
   const formattedName = titleCase(fosterName.replace("-", " "));
-  const foster = useFoster(formattedName);
 
   return (
     <Box p={3}>
