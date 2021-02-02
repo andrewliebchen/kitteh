@@ -6,8 +6,11 @@ import AppContext from "./AppContext";
 import dayjs from "dayjs";
 import TimeSelect from "./TimeSelect";
 import Weight from "./Weight";
+import UnitSelect from "./UnitSelect";
 
 const columnWidths = ["15%", "10%", "75%"];
+
+// TODO: Add UnitSelect
 
 const Animal = props => {
   const { createWeight } = useContext(AppContext);
@@ -18,10 +21,14 @@ const Animal = props => {
   return (
     Object.keys(animal).length > 0 && (
       <Box p={3}>
-        <Heading mb={3}>{animal.fields.Name}</Heading>
+        <Flex
+          sx={{ alignItems: "center", justifyContent: "space-between", mb: 3 }}
+        >
+          <Heading>{animal.fields.Name}</Heading>
+        </Flex>
         <Flex
           as="form"
-          sx={{ alignItems: "center", gap: 3, mb: 3 }}
+          sx={{ alignItems: "center", gap: 2, mb: 3 }}
           onSubmit={event => {
             event.preventDefault();
             createWeight(weight, animal.id);
@@ -35,6 +42,7 @@ const Animal = props => {
             placeholder={`Add a new weight for ${animal.fields.Name}`}
             onChange={event => setWeight(event.target.value)}
           />
+          <UnitSelect />
           <TimeSelect />
           <Button>Send</Button>
         </Flex>

@@ -1,3 +1,10 @@
+const controlBase = {
+  bg: "muted",
+  border: 0,
+  borderRadius: 2,
+  px: 3
+};
+
 export default {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
@@ -21,16 +28,32 @@ export default {
     background: "#fff",
     primary: "#07c",
     secondary: "#30c",
-    muted: "#f6f6f6"
+    muted: "rgba(0, 0, 0, 0.05)"
   },
   sizes: {},
   buttons: {
     primary: {
+      ...controlBase,
       fontWeight: "bold",
-      flexShrink: 0
+      flexShrink: 0,
+      bg: "primary"
+    },
+    secondary: {
+      ...controlBase,
+      flexShrink: 0,
+      color: "primary"
     }
   },
-  forms: {},
+  forms: {
+    select: {
+      ...controlBase,
+      color: "primary"
+    },
+    input: {
+      ...controlBase
+    }
+  },
+  radii: [0, 4, 8, 12],
   styles: {
     root: {
       fontFamily: "body",

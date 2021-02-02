@@ -6,6 +6,8 @@ import AppContext from "./AppContext";
 import dayjs from "dayjs";
 import Weight from "./Weight";
 
+// TODO: Add TimeSelect
+
 const AnimalList = props => {
   const { createWeights } = useContext(AppContext);
   const { animals, weights } = useAnimals(props.fosterName);
