@@ -30,6 +30,7 @@ export default {
       flexShrink: 0
     }
   },
+  forms: {},
   styles: {
     root: {
       fontFamily: "body",

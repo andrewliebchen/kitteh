@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import Airtable from "airtable";
 import AppContext from "./AppContext";
 import { useState } from "react";
+import { units } from "./helpers";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -9,7 +10,9 @@ Airtable.configure({
 });
 
 const AppProvider = props => {
-  const [weightTimestamp, setWeightTimestamp] = useState("");
+  const [timestamp, setTimestamp] = useState("");
+  const [unit, setUnit] = useState("grams");
+
   const AirtableBase = Airtable.base("app0AK6Hi7kU1sG4P");
 
   const createWeights = weights => {
@@ -34,12 +37,10 @@ const AppProvider = props => {
         fields: {
           Weight: parseInt(weight),
           Animal: [id],
-          Recorded: weightTimestamp === "now" ? Date.now() : weightTimestamp
+          Recorded: timestamp === "now" ? Date.now() : timestamp
         }
       }
     ];
-
-    console.log(payload);
 
     AirtableBase("Weights").create(payload, (error, records) => {
       error
@@ -55,8 +56,10 @@ const AppProvider = props => {
         AirtableBase,
         createWeights,
         createWeight,
-        weightTimestamp,
-        setWeightTimestamp
+        timestamp,
+        setTimestamp,
+        unit,
+        setUnit
       }}
     >
       {props.children}

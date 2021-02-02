@@ -4,17 +4,16 @@ import AppContext from "./AppContext";
 import dayjs from "dayjs";
 
 const TimeSelect = () => {
-  const { weightTimestamp, setWeightTimestamp } = useContext(AppContext);
+  const { timestamp, setTimestamp } = useContext(AppContext);
   const [type, setType] = useState("now");
 
   return (
-    <Box sx={{ width: "25%" }}>
+    <Box sx={{ flexShrink: 0 }}>
       {type === "now" ? (
         <Select
-          sx={{ width: "100%" }}
           onChange={event => {
             setType(event.target.value);
-            setWeightTimestamp(Date.now());
+            setTimestamp(Date.now());
           }}
         >
           <option value="now">Right now</option>
@@ -23,7 +22,7 @@ const TimeSelect = () => {
       ) : (
         <Input
           type="datetime-local"
-          onChange={event => setWeightTimestamp(event.target.value)}
+          onChange={event => setTimestamp(event.target.value)}
         />
       )}
     </Box>

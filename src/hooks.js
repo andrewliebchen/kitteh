@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import AppContext from "./AppContext";
+import { useLocation } from "react-router-dom";
 
 export const useAnimals = fosterName => {
   const { AirtableBase } = useContext(AppContext);
@@ -68,4 +69,26 @@ export const useAnimal = animalId => {
   return { animal, weights };
 };
 
-// for weights `{ID} = "${animalId}"`
+export const useFoster = fosterName => {
+  const { AirtableBase, setUnit } = useContext(AppContext);
+  const [foster, setFoster] = useState({});
+
+  useEffect(() => {
+    async function fetchFoster() {
+      AirtableBase("People")
+        .select({
+          filterByFormula: `{Name} = "${fosterName}"`
+        })
+        .eachPage(function page(records, fetchNextPage) {
+          const foster = records[0];
+          setFoster(foster);
+          setUnit(foster.fields["Display units"]);
+          fetchNextPage();
+        });
+    }
+
+    fetchFoster();
+  }, [AirtableBase, fosterName]);
+
+  return foster;
+};
