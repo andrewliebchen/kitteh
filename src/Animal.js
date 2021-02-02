@@ -13,10 +13,15 @@ const columnWidths = ["15%", "10%", "75%"];
 // TODO: Add UnitSelect
 
 const Animal = props => {
-  const { createWeight } = useContext(AppContext);
+  const { createWeight, unit } = useContext(AppContext);
   const [weight, setWeight] = useState("");
   const { animalId } = useParams();
   const { animal, weights } = useAnimal(animalId);
+
+  const submitWeight = () => {
+    createWeight(weight, animal.id);
+    setWeight("");
+  };
 
   return (
     Object.keys(animal).length > 0 && (
@@ -31,8 +36,13 @@ const Animal = props => {
           sx={{ alignItems: "center", gap: 2, mb: 3 }}
           onSubmit={event => {
             event.preventDefault();
-            createWeight(weight, animal.id);
-            setWeight();
+            if (unit === "ounces") {
+              window.confirm(
+                "Are you sure your units are ounces? We recommend measuring in grams."
+              ) && submitWeight();
+            } else {
+              submitWeight();
+            }
           }}
         >
           <Input

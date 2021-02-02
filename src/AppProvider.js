@@ -9,7 +9,7 @@ Airtable.configure({
 });
 
 const AppProvider = props => {
-  const [timestamp, setTimestamp] = useState("");
+  const [timestamp, setTimestamp] = useState("now");
   const [unit, setUnit] = useState("grams");
 
   const AirtableBase = Airtable.base("app0AK6Hi7kU1sG4P");
