@@ -1,8 +1,16 @@
 import { useContext, useState, useEffect } from "react";
 import AppContext from "./AppContext";
+import Airtable from "airtable";
+
+Airtable.configure({
+  endpointUrl: "https://api.airtable.com",
+  apiKey: process.env.REACT_APP_AIRTABLE_KEY
+});
+
+export const useAirtable = () => Airtable.base("app0AK6Hi7kU1sG4P");
 
 export const useAnimals = fosterName => {
-  const { AirtableBase } = useContext(AppContext);
+  const airtable = useAirtable();
   const [animals, setAnimals] = useState([]);
   const [weights, setWeights] = useState([]);
 
@@ -12,7 +20,7 @@ export const useAnimals = fosterName => {
     };
 
     async function fetchWeights() {
-      AirtableBase("Weights")
+      airtable("Weights")
         .select(query)
         .eachPage(function page(records, fetchNextPage) {
           setWeights(records);
@@ -21,7 +29,7 @@ export const useAnimals = fosterName => {
     }
 
     async function fetchAnimals() {
-      AirtableBase("Animals")
+      airtable("Animals")
         .select(query)
         .eachPage(
           function page(records, fetchNextPage) {
@@ -36,21 +44,21 @@ export const useAnimals = fosterName => {
 
     fetchWeights();
     fetchAnimals();
-  }, [AirtableBase, fosterName]);
+  }, [airtable, fosterName]);
 
   return { animals, weights };
 };
 
 export const useAnimal = animalId => {
-  const { AirtableBase } = useContext(AppContext);
+  const airtable = useAirtable();
   const [animal, setAnimal] = useState({});
   const [weights, setWeights] = useState([]);
 
   useEffect(() => {
     async function fetchAnimal() {
-      AirtableBase("Animals").find(animalId, (error, record) => {
+      airtable("Animals").find(animalId, (error, record) => {
         setAnimal(record);
-        AirtableBase("Weights")
+        airtable("Weights")
           .select({
             filterByFormula: `{Animal} = "${record.fields.Name}"`,
             sort: [{ field: "Recorded", direction: "desc" }]
@@ -63,18 +71,19 @@ export const useAnimal = animalId => {
     }
 
     fetchAnimal();
-  }, [AirtableBase, animalId]);
+  }, [airtable, animalId]);
 
   return { animal, weights };
 };
 
 export const useFoster = fosterName => {
-  const { AirtableBase, setUnit } = useContext(AppContext);
+  const airtable = useAirtable();
+  const { setUnit } = useContext(AppContext);
   const [foster, setFoster] = useState({});
 
   useEffect(() => {
     async function fetchFoster() {
-      AirtableBase("People")
+      airtable("People")
         .select({
           filterByFormula: `{Name} = "${fosterName}"`
         })
@@ -87,7 +96,7 @@ export const useFoster = fosterName => {
     }
 
     fetchFoster();
-  }, [AirtableBase, fosterName]);
+  }, [airtable, fosterName]);
 
   return foster;
 };

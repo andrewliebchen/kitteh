@@ -11,7 +11,7 @@ const App = () => (
         <Route path="/:fosterName" component={Foster} />
       </Switch>
     </Router>
-    <ToastContainer hideProgressBar={true} />
+    <ToastContainer hideProgressBar={true} position="top-center" />
   </div>
 );
 

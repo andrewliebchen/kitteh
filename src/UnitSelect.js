@@ -2,6 +2,7 @@ import { Button } from "theme-ui";
 import { units } from "./helpers";
 import { useContext } from "react";
 import AppContext from "./AppContext";
+import { toast } from "react-toastify";
 
 const UnitSelect = props => {
   const { unit, setUnit } = useContext(AppContext);
@@ -12,6 +13,7 @@ const UnitSelect = props => {
       onClick={event => {
         event.preventDefault();
         setUnit(unit === "grams" ? "ounces" : "grams");
+        toast.info(`Units have been changed to ${unit}`);
       }}
     >
       {units[unit].label}

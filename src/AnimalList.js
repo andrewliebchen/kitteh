@@ -1,17 +1,19 @@
 import { Box, Button, Flex, Input, Text } from "theme-ui";
 import { Link } from "react-router-dom";
-import { useAnimals } from "./hooks";
+import { useAnimals, useAirtable } from "./hooks";
 import { useContext, useState, useEffect } from "react";
 import AppContext from "./AppContext";
 import dayjs from "dayjs";
 import Weight from "./Weight";
+import { toast } from "react-toastify";
 
 // TODO: Add TimeSelect
 
 const AnimalList = props => {
-  const { createWeights } = useContext(AppContext);
   const { animals, weights } = useAnimals(props.fosterName);
+  const airtable = useAirtable();
   const [weightsInput, setWeightsInput] = useState([]);
+  const { timestamp } = useContext(AppContext);
 
   useEffect(
     () =>
@@ -23,6 +25,22 @@ const AnimalList = props => {
         })
       )
   );
+
+  const createWeights = weights => {
+    const payload = weights.map(weight => {
+      weight.Recorded = timestamp === "now" ? Date.now() : timestamp;
+
+      return {
+        fields: weight
+      };
+    });
+
+    airtable("Weights").create(payload, (error, records) => {
+      error
+        ? toast.error("Something went wrong")
+        : toast.success("Weights added");
+    });
+  };
 
   return (
     <Box>

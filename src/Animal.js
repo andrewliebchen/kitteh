@@ -1,5 +1,5 @@
 import { Box, Button, Input, Flex, Heading, Progress, Text } from "theme-ui";
-import { useAnimal } from "./hooks";
+import { useAnimal, useAirtable } from "./hooks";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
@@ -7,20 +7,37 @@ import dayjs from "dayjs";
 import TimeSelect from "./TimeSelect";
 import Weight from "./Weight";
 import UnitSelect from "./UnitSelect";
+import { toast } from "react-toastify";
 
 const columnWidths = ["15%", "10%", "75%"];
 
-// TODO: Add UnitSelect
-
 const Animal = props => {
-  const { createWeight, unit } = useContext(AppContext);
+  const { unit, timestamp } = useContext(AppContext);
   const [weight, setWeight] = useState("");
   const { animalId } = useParams();
   const { animal, weights } = useAnimal(animalId);
+  const airtable = useAirtable();
 
-  const submitWeight = () => {
-    createWeight(weight, animal.id);
-    setWeight("");
+  // TODO: Refresh data when new weight submitted
+  // TODO: Breadcrumbs in header back to Foster
+  // TODO: Links to siblings
+
+  const createWeight = (weight, id) => {
+    const payload = [
+      {
+        fields: {
+          Weight: parseInt(weight),
+          Animal: [id],
+          Recorded: timestamp === "now" ? Date.now() : timestamp
+        }
+      }
+    ];
+
+    airtable("Weights").create(payload, (error, records) => {
+      error
+        ? toast.error("Something went wrong")
+        : toast.success("Weight added");
+    });
   };
 
   return (
@@ -36,13 +53,8 @@ const Animal = props => {
           sx={{ alignItems: "center", gap: 2, mb: 3 }}
           onSubmit={event => {
             event.preventDefault();
-            if (unit === "ounces") {
-              window.confirm(
-                "Are you sure your units are ounces? We recommend measuring in grams."
-              ) && submitWeight();
-            } else {
-              submitWeight();
-            }
+            createWeight(weight, animal.id);
+            setWeight("");
           }}
         >
           <Input
