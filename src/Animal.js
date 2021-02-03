@@ -10,7 +10,7 @@ import UnitSelect from "./UnitSelect";
 import { toast } from "react-toastify";
 import { units } from "./helpers";
 
-const columnWidths = ["15%", "10%", "75%"];
+const columnWidths = ["10%", "10%", "10%", "70%"];
 
 const Animal = props => {
   const { unit, timestamp } = useContext(AppContext);
@@ -77,18 +77,23 @@ const Animal = props => {
         <Box>
           <Flex sx={{ gap: 3, textDecoration: "underline" }}>
             <Text sx={{ width: columnWidths[0] }}>Date</Text>
-            <Text sx={{ width: columnWidths[1], textAlign: "right", pr: 2 }}>
+            <Text sx={{ width: columnWidths[1] }}>Time</Text>
+            <Text sx={{ width: columnWidths[2], textAlign: "right" }}>
               Weight
             </Text>
+            <Flex sx={{ width: columnWidths[3] }} />
           </Flex>
           {weights.map(weight => (
             <Flex key={weight.id} sx={{ gap: 3, alignItems: "center" }}>
               <Text sx={{ width: columnWidths[0] }}>
-                {dayjs(weight.fields.Recorded).format("h:mma [on] MMM D")}
+                {dayjs(weight.fields.Recorded).format("ddd, MMM D")}
+              </Text>
+              <Text sx={{ width: columnWidths[1] }}>
+                {dayjs(weight.fields.Recorded).format("h:mma")}
               </Text>
               <Text
                 sx={{
-                  width: columnWidths[1],
+                  width: columnWidths[2],
                   textAlign: "right",
                   fontWeight: "bold"
                 }}
@@ -98,7 +103,7 @@ const Animal = props => {
               <Progress
                 max={10}
                 value={weight.fields.Weight}
-                sx={{ bg: "muted", width: columnWidths[2] }}
+                sx={{ bg: "muted", width: columnWidths[3] }}
               />
             </Flex>
           ))}
