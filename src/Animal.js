@@ -8,6 +8,7 @@ import TimeSelect from "./TimeSelect";
 import Weight from "./Weight";
 import UnitSelect from "./UnitSelect";
 import { toast } from "react-toastify";
+import { units } from "./helpers";
 
 const columnWidths = ["15%", "10%", "75%"];
 
@@ -23,10 +24,13 @@ const Animal = props => {
   // TODO: Links to siblings
 
   const createWeight = (weight, id) => {
+    const weightInt = parseInt(weight, 10);
+    const weightInGrams = unit === "grams" ? weightInt : weightInt * 28.35;
+
     const payload = [
       {
         fields: {
-          Weight: parseInt(weight),
+          Weight: weightInGrams,
           Animal: [id],
           Recorded: timestamp === "now" ? Date.now() : timestamp
         }
@@ -38,6 +42,8 @@ const Animal = props => {
         ? toast.error("Something went wrong")
         : toast.success("Weight added");
     });
+
+    setWeight(false);
   };
 
   return (
@@ -60,7 +66,7 @@ const Animal = props => {
           <Input
             type="number"
             step={0.01}
-            defaultValue={weight}
+            value={weight}
             placeholder={`Add a new weight for ${animal.fields.Name}`}
             onChange={event => setWeight(event.target.value)}
           />

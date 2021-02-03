@@ -72,7 +72,7 @@ export const useAnimal = animalId => {
     }
 
     fetchAnimal();
-  }, [airtable, animalId]);
+  }, []);
 
   return { animal, weights };
 };

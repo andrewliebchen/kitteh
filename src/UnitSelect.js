@@ -13,7 +13,9 @@ const UnitSelect = props => {
       onClick={event => {
         event.preventDefault();
         setUnit(unit === "grams" ? "ounces" : "grams");
-        toast.info(`Units have been changed to ${unit}`);
+        toast.info(
+          `Units have been changed to ${unit === "grams" ? "ounces" : "grams"}`
+        );
       }}
     >
       {units[unit].label}

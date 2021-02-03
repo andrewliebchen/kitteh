@@ -6,7 +6,8 @@ const Weight = props => {
   const { unit } = useContext(AppContext);
 
   const unitMeta = units[unit];
-  const value = props.value * unitMeta.conversion;
+  const value =
+    unit === "grams" ? props.value : props.value * unitMeta.conversion;
 
   return (
     <b>
