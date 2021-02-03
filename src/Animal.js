@@ -1,16 +1,12 @@
-import { Box, Button, Input, Flex, Heading, Progress, Text } from "theme-ui";
+import { Box, Button, Input, Flex, Heading } from "theme-ui";
 import { useAnimal, useAirtable } from "./hooks";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
-import dayjs from "dayjs";
 import TimeSelect from "./TimeSelect";
-import Weight from "./Weight";
 import UnitSelect from "./UnitSelect";
 import { toast } from "react-toastify";
-import { units } from "./helpers";
-
-const columnWidths = ["10%", "10%", "10%", "70%"];
+import WeightsList from "./WeightsList";
 
 const Animal = props => {
   const { unit, timestamp } = useContext(AppContext);
@@ -74,40 +70,7 @@ const Animal = props => {
           <TimeSelect />
           <Button>Send</Button>
         </Flex>
-        <Box>
-          <Flex sx={{ gap: 3, textDecoration: "underline" }}>
-            <Text sx={{ width: columnWidths[0] }}>Date</Text>
-            <Text sx={{ width: columnWidths[1] }}>Time</Text>
-            <Text sx={{ width: columnWidths[2], textAlign: "right" }}>
-              Weight
-            </Text>
-            <Flex sx={{ width: columnWidths[3] }} />
-          </Flex>
-          {weights.map(weight => (
-            <Flex key={weight.id} sx={{ gap: 3, alignItems: "center" }}>
-              <Text sx={{ width: columnWidths[0] }}>
-                {dayjs(weight.fields.Recorded).format("ddd, MMM D")}
-              </Text>
-              <Text sx={{ width: columnWidths[1] }}>
-                {dayjs(weight.fields.Recorded).format("h:mma")}
-              </Text>
-              <Text
-                sx={{
-                  width: columnWidths[2],
-                  textAlign: "right",
-                  fontWeight: "bold"
-                }}
-              >
-                <Weight value={weight.fields.Weight} />
-              </Text>
-              <Progress
-                max={10}
-                value={weight.fields.Weight}
-                sx={{ bg: "muted", width: columnWidths[3] }}
-              />
-            </Flex>
-          ))}
-        </Box>
+        <WeightsList weights={weights} />
       </Box>
     )
   );
