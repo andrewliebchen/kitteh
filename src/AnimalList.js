@@ -7,13 +7,11 @@ import dayjs from "dayjs";
 import Weight from "./Weight";
 import { toast } from "react-toastify";
 
-// TODO: Add TimeSelect
-
 const AnimalList = props => {
+  const { timestamp } = useContext(AppContext);
+  const [weightsInput, setWeightsInput] = useState([]);
   const { animals, weights } = useAnimals(props.fosterName);
   const airtable = useAirtable();
-  const [weightsInput, setWeightsInput] = useState([]);
-  const { timestamp } = useContext(AppContext);
 
   useEffect(
     () =>
@@ -31,7 +29,7 @@ const AnimalList = props => {
       weight.Recorded = timestamp === "now" ? Date.now() : timestamp;
 
       return {
-        fields: weight
+        fields: { ...weight, Recorded: timestamp }
       };
     });
 

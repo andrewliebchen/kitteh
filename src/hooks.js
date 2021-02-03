@@ -7,7 +7,8 @@ Airtable.configure({
   apiKey: process.env.REACT_APP_AIRTABLE_KEY
 });
 
-export const useAirtable = () => Airtable.base("app0AK6Hi7kU1sG4P");
+export const useAirtable = () =>
+  Airtable.base(process.env.REACT_APP_AIRTABLE_BASE);
 
 export const useAnimals = fosterName => {
   const airtable = useAirtable();
