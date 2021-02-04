@@ -5,7 +5,7 @@ const controlBase = {
   px: 3
 };
 
-export default {
+const theme = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
     body:
@@ -129,14 +129,18 @@ export default {
     },
     th: {
       textAlign: "left",
-      borderBottomStyle: "solid"
+      fontWeight: "bold",
+      borderBottom: "2px solid"
     },
     td: {
       textAlign: "left",
-      borderBottomStyle: "solid"
+      borderBottom: "1px solid",
+      borderColor: "muted"
     },
     img: {
       maxWidth: "100%"
     }
   }
 };
+
+export default theme;

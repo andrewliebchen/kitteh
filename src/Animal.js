@@ -7,6 +7,7 @@ import TimeSelect from "./TimeSelect";
 import UnitSelect from "./UnitSelect";
 import { toast } from "react-toastify";
 import WeightsList from "./WeightsList";
+import WeightsChart from "./WeightsChart";
 
 const Animal = props => {
   const { unit, timestamp } = useContext(AppContext);
@@ -70,6 +71,7 @@ const Animal = props => {
           <TimeSelect />
           <Button>Send</Button>
         </Flex>
+        <WeightsChart weights={weights} />
         <WeightsList weights={weights} />
       </Box>
     )

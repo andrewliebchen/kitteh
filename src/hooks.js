@@ -62,7 +62,7 @@ export const useAnimal = animalId => {
         airtable("Weights")
           .select({
             filterByFormula: `{Animal} = "${record.fields.Name}"`,
-            sort: [{ field: "Recorded", direction: "desc" }]
+            sort: [{ field: "Recorded", direction: "asc" }]
           })
           .eachPage(function page(records, fetchNextPage) {
             setWeights(records);

@@ -8,13 +8,11 @@ import { ThemeProvider } from "theme-ui";
 import theme from "./theme";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <AppProvider>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </AppProvider>
-  </React.StrictMode>,
+  <AppProvider>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </AppProvider>,
   document.getElementById("root")
 );
 
