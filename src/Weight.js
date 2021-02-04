@@ -1,8 +1,8 @@
+import { Text } from "theme-ui";
 import { units } from "./helpers";
 import { useContext } from "react";
 import AppContext from "./AppContext";
 import Decimal from "decimal.js-light";
-import { Text } from "theme-ui";
 
 const Weight = props => {
   const { unit } = useContext(AppContext);

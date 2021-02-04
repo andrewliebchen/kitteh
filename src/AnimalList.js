@@ -1,11 +1,11 @@
 import { Box, Button, Flex, Input, Text } from "theme-ui";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAnimals, useAirtable } from "./hooks";
 import { useContext, useState, useEffect } from "react";
 import AppContext from "./AppContext";
 import dayjs from "dayjs";
 import Weight from "./Weight";
-import { toast } from "react-toastify";
 
 const AnimalList = props => {
   const { timestamp } = useContext(AppContext);
@@ -13,16 +13,15 @@ const AnimalList = props => {
   const { animals, weights } = useAnimals(props.fosterName);
   const airtable = useAirtable();
 
-  useEffect(
-    () =>
-      animals.length > 0 &&
+  useEffect(() => {
+    animals.length > 0 &&
       weightsInput.length === 0 &&
       setWeightsInput(
         animals.map(animal => {
           return { Animal: [animal.id], Weight: false };
         })
-      )
-  );
+      );
+  }, [animals, weightsInput, setWeightsInput]);
 
   const createWeights = weights => {
     const payload = weights.map(weight => {

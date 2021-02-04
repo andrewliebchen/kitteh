@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
-import AppContext from "./AppContext";
 import Airtable from "airtable";
+import AppContext from "./AppContext";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -11,9 +11,9 @@ export const useAirtable = () =>
   Airtable.base(process.env.REACT_APP_AIRTABLE_BASE);
 
 export const useAnimals = fosterName => {
-  const airtable = useAirtable();
   const [animals, setAnimals] = useState([]);
   const [weights, setWeights] = useState([]);
+  const airtable = useAirtable();
 
   useEffect(() => {
     const query = {
@@ -51,9 +51,9 @@ export const useAnimals = fosterName => {
 };
 
 export const useAnimal = animalId => {
-  const airtable = useAirtable();
   const [animal, setAnimal] = useState({});
   const [weights, setWeights] = useState([]);
+  const airtable = useAirtable();
 
   useEffect(() => {
     async function fetchAnimal() {
@@ -72,15 +72,15 @@ export const useAnimal = animalId => {
     }
 
     fetchAnimal();
-  }, []);
+  }, [airtable, animalId]);
 
   return { animal, weights };
 };
 
 export const useFoster = fosterName => {
-  const airtable = useAirtable();
-  const { setUnit } = useContext(AppContext);
   const [foster, setFoster] = useState({});
+  const { setUnit } = useContext(AppContext);
+  const airtable = useAirtable();
 
   useEffect(() => {
     async function fetchFoster() {
@@ -97,7 +97,7 @@ export const useFoster = fosterName => {
     }
 
     fetchFoster();
-  }, [airtable, fosterName]);
+  }, [airtable, fosterName, setUnit]);
 
   return foster;
 };

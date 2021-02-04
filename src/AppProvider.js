@@ -1,8 +1,5 @@
-import { toast } from "react-toastify";
-import Airtable from "airtable";
 import AppContext from "./AppContext";
 import { useState } from "react";
-import { useAirtable } from "./hooks";
 
 // TODO: Convert units to g when submitted
 // Can the creation things move into the components?

@@ -6,7 +6,6 @@ import {
   ChartContainer,
   ChartRow,
   YAxis,
-  BarChart,
   LineChart,
   styler
 } from "react-timeseries-charts";
@@ -16,16 +15,11 @@ const WeightsChart = props => {
   const series = new TimeSeries({
     name: "weights",
     columns: ["index", "weight"],
-    points: props.weights.map(weight => {
-      console.log(new Date(weight.fields.Recorded));
-      return [
-        Index.getIndexString("1d", new Date(weight.fields.Recorded)),
-        weight.fields.Weight
-      ];
-    })
+    points: props.weights.map(weight => [
+      Index.getIndexString("1d", new Date(weight.fields.Recorded)),
+      weight.fields.Weight
+    ])
   });
-
-  console.log(series);
 
   return (
     props.weights.length > 0 && (
@@ -38,10 +32,7 @@ const WeightsChart = props => {
                 label="Weight"
                 min={0}
                 max={20}
-                width="70"
                 type="linear"
-                showGrid
-                hideAxisLine
                 visible={false}
               />
               <Charts>

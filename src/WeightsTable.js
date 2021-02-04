@@ -1,8 +1,10 @@
-import { Box, Flex, Text, Styled } from "theme-ui";
+/* eslint-disable react/jsx-pascal-case */
+
+import { Text, Styled } from "theme-ui";
 import dayjs from "dayjs";
 import Weight from "./Weight";
 
-const WeightsList = props => (
+const WeightsTable = props => (
   <table width="100%" cellSpacing="8" style={{ margin: "0 -8px 0 -8px" }}>
     <thead>
       <tr>
@@ -35,4 +37,4 @@ const WeightsList = props => (
   </table>
 );
 
-export default WeightsList;
+export default WeightsTable;

@@ -1,13 +1,13 @@
 import { Box, Button, Input, Flex, Heading } from "theme-ui";
+import { toast } from "react-toastify";
 import { useAnimal, useAirtable } from "./hooks";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
 import TimeSelect from "./TimeSelect";
 import UnitSelect from "./UnitSelect";
-import { toast } from "react-toastify";
-import WeightsList from "./WeightsList";
 import WeightsChart from "./WeightsChart";
+import WeightsTable from "./WeightsTable";
 
 const Animal = props => {
   const { unit, timestamp } = useContext(AppContext);
@@ -72,7 +72,7 @@ const Animal = props => {
           <Button>Send</Button>
         </Flex>
         <WeightsChart weights={weights} />
-        <WeightsList weights={weights} />
+        <WeightsTable weights={weights} />
       </Box>
     )
   );
