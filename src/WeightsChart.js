@@ -31,7 +31,7 @@ const WeightsChart = props => {
                 id="weight"
                 label="Weight"
                 min={0}
-                max={20}
+                max={1000}
                 type="linear"
                 visible={false}
               />
