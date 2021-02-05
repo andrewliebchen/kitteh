@@ -1,6 +1,7 @@
-import { useContext, useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import { useState, useEffect } from "react";
 import Airtable from "airtable";
-import AppContext from "./AppContext";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -96,24 +97,4 @@ export const useFoster = fosterName => {
   useEffect(() => fetchFoster(), []);
 
   return foster;
-};
-
-export const useGrowthModel = () => {
-  const [growthModel, setGrowthModel] = useState([]);
-  const airtable = useAirtable();
-
-  const fetchGrowthModel = async () => {
-    await airtable("Growth Model")
-      .select({ sort: [{ field: "Week", direction: "desc" }] })
-      .eachPage(function page(records, fetchNextPage) {
-        setGrowthModel(records);
-        fetchNextPage();
-      });
-  };
-
-  useEffect(() => fetchGrowthModel(), []);
-
-  console.log(growthModel.map(record => record.fields.Week));
-
-  return growthModel;
 };

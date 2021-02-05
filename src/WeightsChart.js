@@ -10,25 +10,49 @@ import {
   styler
 } from "react-timeseries-charts";
 import theme from "./theme";
-import { useGrowthModel } from "./hooks";
 import dayjs from "dayjs";
 
-const WeightsChart = props => {
-  const growthModel = useGrowthModel();
+const growthModel = [
+  { min: 50, max: 150 },
+  { min: 150, max: 250 },
+  { min: 250, max: 350 },
+  { min: 350, max: 450 },
+  { min: 450, max: 550 },
+  { min: 550, max: 850 }
+];
 
-  const growthModelSeries = new TimeSeries({
-    name: "growthModel",
+const WeightsChart = props => {
+  // TODO: Start growth model from birthday
+  // TODO: simplify...
+  const growthModelSeriesMax = new TimeSeries({
+    name: "growthModelMax",
     columns: ["index", "weight"],
-    points: growthModel.map(record => [
+    points: growthModel.map((record, index) => [
       Index.getIndexString(
         "1d",
         new Date(
           dayjs()
-            .subtract(record.fields.Week, "week")
+            .subtract(growthModel.length - index, "week")
             .toString()
         )
       ),
-      record.fields.Max
+      record.max
+    ])
+  });
+
+  const growthModelSeriesMin = new TimeSeries({
+    name: "growthModelMax",
+    columns: ["index", "weight"],
+    points: growthModel.map((record, index) => [
+      Index.getIndexString(
+        "1d",
+        new Date(
+          dayjs()
+            .subtract(growthModel.length - index, "week")
+            .toString()
+        )
+      ),
+      record.min
     ])
   });
 
@@ -59,7 +83,12 @@ const WeightsChart = props => {
                 <LineChart
                   axis="weight"
                   columns={["weight"]}
-                  series={growthModelSeries}
+                  series={growthModelSeriesMax}
+                />
+                <LineChart
+                  axis="weight"
+                  columns={["weight"]}
+                  series={growthModelSeriesMin}
                 />
                 <LineChart
                   axis="weight"
