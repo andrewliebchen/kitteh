@@ -15,89 +15,85 @@ export const useAnimals = fosterName => {
   const [weights, setWeights] = useState([]);
   const airtable = useAirtable();
 
-  useEffect(() => {
-    const query = {
-      filterByFormula: `{Foster} = "${fosterName}"`
-    };
+  const query = {
+    filterByFormula: `{Foster} = "${fosterName}"`
+  };
 
-    async function fetchWeights() {
-      airtable("Weights")
-        .select(query)
-        .eachPage(function page(records, fetchNextPage) {
-          setWeights(records);
+  const fetchWeights = async () => {
+    await airtable("Weights")
+      .select(query)
+      .eachPage(function page(records, fetchNextPage) {
+        setWeights(records);
+        fetchNextPage();
+      });
+  };
+
+  const fetchAnimals = async () => {
+    await airtable("Animals")
+      .select(query)
+      .eachPage(
+        function page(records, fetchNextPage) {
+          setAnimals(records);
           fetchNextPage();
-        });
-    }
+        },
+        function done(err) {
+          err && console.error(err);
+        }
+      );
+  };
 
-    async function fetchAnimals() {
-      airtable("Animals")
-        .select(query)
-        .eachPage(
-          function page(records, fetchNextPage) {
-            setAnimals(records);
-            fetchNextPage();
-          },
-          function done(err) {
-            err && console.error(err);
-          }
-        );
-    }
-
+  useEffect(() => {
     fetchWeights();
     fetchAnimals();
-  }, [airtable, fosterName]);
+  }, []);
 
   return { animals, weights };
 };
 
 export const useAnimal = animalId => {
-  const [animal, setAnimal] = useState({});
+  const [animal, setAnimal] = useState(false);
   const [weights, setWeights] = useState([]);
   const airtable = useAirtable();
 
-  useEffect(() => {
-    async function fetchAnimal() {
-      airtable("Animals").find(animalId, (error, record) => {
-        setAnimal(record);
-        airtable("Weights")
-          .select({
-            filterByFormula: `{Animal} = "${record.fields.Name}"`,
-            sort: [{ field: "Recorded", direction: "asc" }]
-          })
-          .eachPage(function page(records, fetchNextPage) {
-            setWeights(records);
-            fetchNextPage();
-          });
-      });
-    }
+  const fetchAnimal = async () => {
+    await airtable("Animals").find(animalId, (error, record) => {
+      setAnimal(record);
+      airtable("Weights")
+        .select({
+          filterByFormula: `{Animal} = "${record.fields.Name}"`,
+          sort: [{ field: "Recorded", direction: "asc" }]
+        })
+        .eachPage(function page(records, fetchNextPage) {
+          setWeights(records);
+          fetchNextPage();
+        });
+    });
+  };
 
+  useEffect(() => {
     fetchAnimal();
-  }, [airtable, animalId]);
+  }, []);
 
   return { animal, weights };
 };
 
 export const useFoster = fosterName => {
-  const [foster, setFoster] = useState({});
-  const { setUnit } = useContext(AppContext);
+  const [foster, setFoster] = useState(false);
   const airtable = useAirtable();
 
-  useEffect(() => {
-    async function fetchFoster() {
-      airtable("People")
-        .select({
-          filterByFormula: `{Name} = "${fosterName}"`
-        })
-        .eachPage(function page(records, fetchNextPage) {
-          const foster = records[0];
-          setFoster(foster);
-          setUnit(foster.fields["Display units"]);
-          fetchNextPage();
-        });
-    }
+  const fetchFoster = async () => {
+    await airtable("People")
+      .select({
+        filterByFormula: `{Name} = "${fosterName}"`
+      })
+      .eachPage(function page(records, fetchNextPage) {
+        const foster = records[0];
+        setFoster(foster);
+        fetchNextPage();
+      });
+  };
 
-    fetchFoster();
-  }, [airtable, fosterName, setUnit]);
+  useEffect(() => fetchFoster(), []);
 
   return foster;
 };

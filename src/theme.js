@@ -30,7 +30,7 @@ const theme = {
     secondary: "#30c",
     muted: "rgba(0, 0, 0, 0.05)"
   },
-  sizes: {},
+  sizes: { avatar: 48 },
   buttons: {
     primary: {
       ...controlBase,

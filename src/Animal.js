@@ -1,4 +1,4 @@
-import { Box, Button, Input, Flex, Heading } from "theme-ui";
+import { Avatar, Box, Button, Input, Flex, Heading } from "theme-ui";
 import { toast } from "react-toastify";
 import { useAnimal, useAirtable } from "./hooks";
 import { useContext, useState } from "react";
@@ -46,9 +46,13 @@ const Animal = props => {
   return (
     Object.keys(animal).length > 0 && (
       <Box p={3}>
-        <Flex
-          sx={{ alignItems: "center", justifyContent: "space-between", mb: 3 }}
-        >
+        <Flex sx={{ alignItems: "center", mb: 3, gap: 3 }}>
+          {animal.fields.Image.length > 0 && (
+            <Avatar
+              src={animal.fields.Image[0].url}
+              sx={{ width: "avatar", height: "avatar" }}
+            />
+          )}
           <Heading>{animal.fields.Name}</Heading>
         </Flex>
         <Flex
