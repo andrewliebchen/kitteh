@@ -97,3 +97,23 @@ export const useFoster = fosterName => {
 
   return foster;
 };
+
+export const useGrowthModel = () => {
+  const [growthModel, setGrowthModel] = useState([]);
+  const airtable = useAirtable();
+
+  const fetchGrowthModel = async () => {
+    await airtable("Growth Model")
+      .select({ sort: [{ field: "Week", direction: "desc" }] })
+      .eachPage(function page(records, fetchNextPage) {
+        setGrowthModel(records);
+        fetchNextPage();
+      });
+  };
+
+  useEffect(() => fetchGrowthModel(), []);
+
+  console.log(growthModel.map(record => record.fields.Week));
+
+  return growthModel;
+};

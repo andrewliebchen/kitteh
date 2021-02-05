@@ -10,8 +10,28 @@ import {
   styler
 } from "react-timeseries-charts";
 import theme from "./theme";
+import { useGrowthModel } from "./hooks";
+import dayjs from "dayjs";
 
 const WeightsChart = props => {
+  const growthModel = useGrowthModel();
+
+  const growthModelSeries = new TimeSeries({
+    name: "growthModel",
+    columns: ["index", "weight"],
+    points: growthModel.map(record => [
+      Index.getIndexString(
+        "1d",
+        new Date(
+          dayjs()
+            .subtract(record.fields.Week, "week")
+            .toString()
+        )
+      ),
+      record.fields.Max
+    ])
+  });
+
   const series = new TimeSeries({
     name: "weights",
     columns: ["index", "weight"],
@@ -36,6 +56,11 @@ const WeightsChart = props => {
                 visible={false}
               />
               <Charts>
+                <LineChart
+                  axis="weight"
+                  columns={["weight"]}
+                  series={growthModelSeries}
+                />
                 <LineChart
                   axis="weight"
                   columns={["weight"]}
